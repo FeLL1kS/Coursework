@@ -96,10 +96,11 @@ namespace Library.DataAccess
 
         public Author LoadAuthor(SqlDataReader dataReader)
         {
-            Author author = new Author();
-
-            author.Id = dataReader.GetInt32(dataReader.GetOrdinal("AuthorID"));
-            author.FullName = dataReader.GetString(dataReader.GetOrdinal("FullName"));
+            Author author = new Author
+            {
+                Id = dataReader.GetInt32(dataReader.GetOrdinal("AuthorID")),
+                FullName = dataReader.GetString(dataReader.GetOrdinal("FullName"))
+            };
 
             return author;
         }

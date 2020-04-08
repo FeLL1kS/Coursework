@@ -1,0 +1,25 @@
+﻿<Window x:Class="Library.AddDiscountWindow"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ Title="Добавление типа скидки" ResizeMode="NoResize" SizeToContent="WidthAndHeight"
+WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow">
+
+    <Grid Margin="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="72"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="15*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="150"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Описание" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,149.4,48"/>
+        <TextBlock Text="Процент" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,149.4,0"/>
+        <TextBox Name="tbDiscountDescription" Grid.Row="0" Grid.Column="1" Margin="2.6,3,3.4,2"/>
+        <TextBox Name="tbDiscountPercent" Grid.Row="1" Grid.Column="1" Margin="2.6,3,3.4,3"/>
+        <Button Name="btnSave" Grid.Row="3" Grid.Column="0" Content="Сохранить" Margin="3,3,3.4,2.8" Click="btnSave_Click" />
+        <Button Name="btnCancel" Grid.Row="3" Grid.Column="1" Content="Закрыть" Margin="2.6,3,2.4,2.8" Click="btnCancel_Click" />
+    </Grid>
+</Window>

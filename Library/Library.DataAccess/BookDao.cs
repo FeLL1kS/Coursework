@@ -102,14 +102,15 @@ namespace Library.DataAccess
 
         public Book LoadBook(SqlDataReader dataReader)
         {
-            Book book = new Book();
-
-            book.BookCode = dataReader.GetInt32(dataReader.GetOrdinal("BookCode"));
-            book.Title = dataReader.GetString(dataReader.GetOrdinal("Title"));
-            book.Genre = dataReader.GetString(dataReader.GetOrdinal("Genre"));
-            book.AuthorId = dataReader.GetInt32(dataReader.GetOrdinal("AuthorID"));
-            book.CollateralValue = Convert.ToDouble(dataReader.GetSqlMoney(dataReader.GetOrdinal("CollateralValue")).Value);
-            book.CostPerDay = Convert.ToDouble(dataReader.GetSqlMoney(dataReader.GetOrdinal("CostPerDay")).Value);
+            Book book = new Book
+            {
+                BookCode = dataReader.GetInt32(dataReader.GetOrdinal("BookCode")),
+                Title = dataReader.GetString(dataReader.GetOrdinal("Title")),
+                Genre = dataReader.GetString(dataReader.GetOrdinal("Genre")),
+                AuthorId = dataReader.GetInt32(dataReader.GetOrdinal("AuthorID")),
+                CollateralValue = Convert.ToDouble(dataReader.GetSqlMoney(dataReader.GetOrdinal("CollateralValue")).Value),
+                CostPerDay = Convert.ToDouble(dataReader.GetSqlMoney(dataReader.GetOrdinal("CostPerDay")).Value)
+            };
 
             return book;
         }

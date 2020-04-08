@@ -44,8 +44,15 @@
             </DataGrid.Columns>
         </DataGrid>
 
+        <DataGrid x:Name="dgDiscounts" HorizontalAlignment="Left" Width="588" IsSynchronizedWithCurrentItem="True" IsReadOnly="True" AutoGenerateColumns="False" Margin="99,0.2,0,0.4" Visibility="Hidden" Grid.ColumnSpan="2" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Описание" Binding="{Binding Path=DiscountDescription}" />
+                <DataGridTextColumn Header="Процент" Binding="{Binding Path=DiscountPercent}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
         <StackPanel HorizontalAlignment="Left" Margin="0,0" VerticalAlignment="Top" Width="100" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2">
-            <Button x:Name="btnAuthors" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="73" Click="btnAuthors_Click">
+            <Button x:Name="btnAuthors" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="73" Click="btnTable_Click">
                 <Button.ToolTip>
                     <TextBlock><Run Text="Информации о авторах"/></TextBlock>
                 </Button.ToolTip>
@@ -54,13 +61,22 @@
                     <TextBlock HorizontalAlignment="Center" Margin="1" FontSize="10"><Run Text="Авторы"/></TextBlock>
                 </StackPanel>
             </Button>
-            <Button x:Name="btnBooks" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="73" Click="btnBooks_Click">
+            <Button x:Name="btnBooks" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="73" Click="btnTable_Click">
                 <Button.ToolTip>
                     <TextBlock><Run Text="Информации о книгах"/></TextBlock>
                 </Button.ToolTip>
                 <StackPanel>
                     <Image Source="component\Images\Books.ico" Height="45" Width="70"/>
                     <TextBlock HorizontalAlignment="Center" Margin="1" FontSize="10"><Run Text="Книги"/></TextBlock>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnDiscounts" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="73" Click="btnTable_Click">
+                <Button.ToolTip>
+                    <TextBlock><Run Text="Информации о скидках"/></TextBlock>
+                </Button.ToolTip>
+                <StackPanel>
+                    <Image Source="component\Images\Discount.ico" Height="45" Width="70"/>
+                    <TextBlock HorizontalAlignment="Center" Margin="1" FontSize="10"><Run Text="Скидки"/></TextBlock>
                 </StackPanel>
             </Button>
         </StackPanel>

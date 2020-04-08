@@ -40,13 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthorProcess.cs" />
     <Compile Include="AuthorProcessDb.cs" />
-    <Compile Include="BookProcess.cs" />
     <Compile Include="BookProcessDb.cs" />
     <Compile Include="Converters\DtoConverter.cs" />
+    <Compile Include="DiscountsProcessDb.cs" />
     <Compile Include="IAuthorProcess.cs" />
     <Compile Include="IBookProcess.cs" />
+    <Compile Include="IDiscountsProcess.cs" />
     <Compile Include="ISettingsProcess.cs" />
     <Compile Include="ProcessFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

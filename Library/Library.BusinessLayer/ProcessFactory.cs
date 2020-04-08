@@ -28,6 +28,15 @@ namespace Library.BusinessLayer
             return new BookProcessDb();
         }
 
+        /// <summary>
+        /// Возвращает объект реализующий IDiscountProcess
+        /// </summary>
+        /// <returns></returns>
+        public static IDiscountsProcess GetDiscountProcess()
+        {
+            return new DiscountsProcessDb();
+        }
+
         public static ISettingsProcess GetSettingsProcess()
         {
             return new SettingsProcess();

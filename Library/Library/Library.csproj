@@ -56,6 +56,9 @@
     <Compile Include="AddBookWindow.xaml.cs">
       <DependentUpon>AddBookWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddDiscountWindow.xaml.cs">
+      <DependentUpon>AddDiscountWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
@@ -64,6 +67,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddBookWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddDiscountWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -132,6 +139,12 @@
       <Project>{add72820-0f9c-4476-bb53-26e4e1fff676}</Project>
       <Name>Library.DTO</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="component\Images\CardIndex.ico" />
+    <Resource Include="component\Images\Discount.ico" />
+    <Resource Include="component\Images\Fine.ico" />
+    <Resource Include="component\Images\Reader.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

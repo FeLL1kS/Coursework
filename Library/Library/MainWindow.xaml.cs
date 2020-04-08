@@ -36,13 +36,16 @@ namespace Library
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            switch(status)
+            switch (status)
             {
                 case ("Authors"):
                     this.btnDeleteA_Click();
                     break;
                 case ("Books"):
                     this.btnDeleteB_Click();
+                    break;
+                case ("Discounts"):
+                    this.btnDeleleD_Click();
                     break;
             }
 
@@ -55,11 +58,29 @@ namespace Library
             btnRefresh_Click(sender, e);
         }
 
+        private void btnDeleleD_Click()
+        {
+            DiscountsDto discount = dgDiscounts.SelectedItem as DiscountsDto;
+
+            if (discount == null)
+            {
+                MessageBox.Show("Выберите запись для удаления", "Удаление скидки");
+                return;
+            }
+
+            MessageBoxResult result = MessageBox.Show("Удалить скидку?", "Удаление книги", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.No)
+                return;
+
+            ProcessFactory.GetDiscountProcess().Delete(discount.Id);
+        }
+
         private void btnDeleteB_Click()
         {
             BookDto book = dgBooks.SelectedItem as BookDto;
 
-            if(book == null)
+            if (book == null)
             {
                 MessageBox.Show("Выберите запись для удаления", "Удаление книги");
                 return;
@@ -77,7 +98,7 @@ namespace Library
         {
             AuthorDto author = dgAuthors.SelectedItem as AuthorDto;
 
-            if(author == null)
+            if (author == null)
             {
                 MessageBox.Show("Выберите запись для удаления", "Удаление автора");
                 return;
@@ -85,7 +106,7 @@ namespace Library
 
             MessageBoxResult result = MessageBox.Show("Удалить автора " + author.FullName + "?", "Удаление автора", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
-            if(result == MessageBoxResult.No)
+            if (result == MessageBoxResult.No)
                 return;
 
             ProcessFactory.GetAuthorProcess().Delete(author.Id);
@@ -101,6 +122,9 @@ namespace Library
                 case ("Books"):
                     this.btnAddB_Click();
                     break;
+                case ("Discounts"):
+                    this.btnAddD_Click();
+                    break;
             }
 
             if (status == null)
@@ -110,6 +134,12 @@ namespace Library
             }
 
             btnRefresh_Click(sender, e);
+        }
+
+        private void btnAddD_Click()
+        {
+            AddDiscountWindow window = new AddDiscountWindow();
+            window.ShowDialog();
         }
 
         private void btnAddB_Click()
@@ -134,6 +164,9 @@ namespace Library
                 case ("Books"):
                     this.btnEditB_Click();
                     break;
+                case ("Discounts"):
+                    this.btnEditD_Click();
+                    break;
             }
 
             if (status == null)
@@ -143,6 +176,21 @@ namespace Library
             }
 
             btnRefresh_Click(sender, e);
+        }
+
+        private void btnEditD_Click()
+        {
+            DiscountsDto discount = dgDiscounts.SelectedItem as DiscountsDto;
+
+            if (discount == null)
+            {
+                MessageBox.Show("Выберите запись для редактирования", "Редактирование скидки");
+                return;
+            }
+
+            AddDiscountWindow window = new AddDiscountWindow();
+            window.Load(discount);
+            window.ShowDialog();
         }
 
         private void btnEditB_Click()
@@ -185,6 +233,9 @@ namespace Library
                 case ("Books"):
                     this.btnRefreshB_Click();
                     break;
+                case ("Discounts"):
+                    this.btnRefreshD_Click();
+                    break;
             }
 
             if (status == null)
@@ -192,6 +243,12 @@ namespace Library
                 MessageBox.Show("Выберите таблицу!", "Проверка");
                 return;
             }
+        }
+
+        private void btnRefreshD_Click()
+        {
+            IList<DiscountsDto> discounts = ProcessFactory.GetDiscountProcess().GetList();
+            dgDiscounts.ItemsSource = discounts;
         }
 
         private void btnRefreshB_Click()
@@ -206,33 +263,33 @@ namespace Library
             dgAuthors.ItemsSource = authors;
         }
 
-        private void btnAuthors_Click(object sender, RoutedEventArgs e)
+        private void btnTable_Click(object sender, RoutedEventArgs e)
         {
-            switch(status)
+            switch(((Button)sender).Name)
             {
-                case ("Books"):
-                    dgBooks.Visibility = Visibility.Hidden;
-                    break;
-            }
-
-            dgAuthors.Visibility = Visibility.Visible;
-            statusLabel.Content = "Работа с таблицей: Авторы";
-            status = "Authors";
-            btnRefresh_Click(sender, e);
-        }
-
-        private void btnBooks_Click(object sender, RoutedEventArgs e)
-        {
-            switch (status)
-            {
-                case ("Authors"):
+                case ("btnDiscounts"):
                     dgAuthors.Visibility = Visibility.Hidden;
+                    dgBooks.Visibility = Visibility.Hidden;
+                    dgDiscounts.Visibility = Visibility.Visible;
+                    statusLabel.Content = "Работа с таблицей: Скидки";
+                    status = "Discounts";
+                    break;
+                case ("btnBooks"):
+                    dgAuthors.Visibility = Visibility.Hidden;
+                    dgDiscounts.Visibility = Visibility.Hidden;
+                    dgBooks.Visibility = Visibility.Visible;
+                    statusLabel.Content = "Работа с таблицей: Книги";
+                    status = "Books";
+                    break;
+                case ("btnAuthors"):
+                    dgDiscounts.Visibility = Visibility.Hidden;
+                    dgBooks.Visibility = Visibility.Hidden;
+                    dgAuthors.Visibility = Visibility.Visible;
+                    statusLabel.Content = "Работа с таблицей: Авторы";
+                    status = "Authors";
                     break;
             }
 
-            dgBooks.Visibility = Visibility.Visible;
-            statusLabel.Content = "Работа с таблицей: Книги";
-            status = "Books";
             btnRefresh_Click(sender, e);
         }
     }

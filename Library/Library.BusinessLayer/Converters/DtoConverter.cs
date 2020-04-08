@@ -14,33 +14,23 @@ namespace Library.BusinessLayer.Converters
         {
             if (author == null)
                 return null;
-            AuthorDto authorDto = new AuthorDto();
-            authorDto.Id = author.Id;
-            authorDto.FullName = author.FullName;
+            AuthorDto authorDto = new AuthorDto
+            {
+                Id = author.Id,
+                FullName = author.FullName
+            };
             return authorDto;
-        }
-
-        internal static Book Convert(BookDto bookDto)
-        {
-            if (bookDto == null)
-                return null;
-            Book book = new Book();
-            book.BookCode = bookDto.Id;
-            book.Title = bookDto.Title;
-            book.Genre = bookDto.Genre;
-            book.CollateralValue = bookDto.CollateralValue;
-            book.CostPerDay = bookDto.CostPerDay;
-            book.AuthorId = bookDto.Author.Id;
-            return book;
         }
 
         public static Author Convert(AuthorDto authorDto)
         {
             if (authorDto == null)
                 return null;
-            Author author = new Author();
-            author.Id = authorDto.Id;
-            author.FullName = authorDto.FullName;
+            Author author = new Author
+            {
+                Id = authorDto.Id,
+                FullName = authorDto.FullName
+            };
             return author;
         }
 
@@ -60,14 +50,33 @@ namespace Library.BusinessLayer.Converters
         {
             if (book == null)
                 return null;
-            BookDto bookDto = new BookDto();
-            bookDto.Id = book.BookCode;
-            bookDto.Title = book.Title;
-            bookDto.Genre = book.Genre;
-            bookDto.CollateralValue = book.CollateralValue;
-            bookDto.CostPerDay = book.CostPerDay;
-            bookDto.Author = Convert(DaoFactory.GetAuthorDao().Get(book.AuthorId));
+            BookDto bookDto = new BookDto
+            {
+                Id = book.BookCode,
+                Title = book.Title,
+                Genre = book.Genre,
+                CollateralValue = book.CollateralValue,
+                CostPerDay = book.CostPerDay,
+                Author = Convert(DaoFactory.GetAuthorDao().Get(book.AuthorId))
+            };
+
             return bookDto;
+        }
+
+        public static Book Convert(BookDto bookDto)
+        {
+            if (bookDto == null)
+                return null;
+            Book book = new Book
+            {
+                BookCode = bookDto.Id,
+                Title = bookDto.Title,
+                Genre = bookDto.Genre,
+                CollateralValue = bookDto.CollateralValue,
+                CostPerDay = bookDto.CostPerDay,
+                AuthorId = bookDto.Author.Id
+            };
+            return book;
         }
 
         public static IList<BookDto> Convert(IList<Book> books)
@@ -80,6 +89,51 @@ namespace Library.BusinessLayer.Converters
                 bookDtos.Add(Convert(book));
             }
             return bookDtos;
+        }
+
+        public static DiscountsDto Convert(Discounts discount)
+        {
+            if (discount == null)
+                return null;
+
+            DiscountsDto discountDto = new DiscountsDto
+            {
+                Id = discount.DiscountCode,
+                DiscountDescription = discount.DiscountDescription,
+                DiscountPercent = discount.DiscountPercent
+            };
+
+            return discountDto;
+        }
+
+        public static Discounts Convert(DiscountsDto discountDto)
+        {
+            if (discountDto == null)
+                return null;
+
+            Discounts discount = new Discounts
+            {
+                DiscountCode = discountDto.Id,
+                DiscountDescription = discountDto.DiscountDescription,
+                DiscountPercent = discountDto.DiscountPercent
+            };
+
+            return discount;
+        }
+
+        public static IList<DiscountsDto> Convert(IList<Discounts> discounts)
+        {
+            if (discounts == null)
+                return null;
+
+            IList<DiscountsDto> discountsDtos = new List<DiscountsDto>();
+         
+            foreach(Discounts discount in discounts)
+            {
+                discountsDtos.Add(Convert(discount));
+            }
+
+            return discountsDtos;
         }
     }
 }

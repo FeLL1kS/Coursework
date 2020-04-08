@@ -17,7 +17,7 @@ namespace Library.DataAccess
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = "INSERT INTO Author(FullName) VALUES(@FullName)";
-                    cmd.Parameters.AddWithValue("@FullName", author.Id);
+                    cmd.Parameters.AddWithValue("@FullName", author.FullName);
                     cmd.ExecuteNonQuery();
                 }
             }

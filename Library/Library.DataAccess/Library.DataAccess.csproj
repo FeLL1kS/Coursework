@@ -47,10 +47,14 @@
     <Compile Include="DaoFactory.cs" />
     <Compile Include="Entities\Author.cs" />
     <Compile Include="Entities\Book.cs" />
+    <Compile Include="Entities\CardIndex.cs" />
+    <Compile Include="Entities\Fines.cs" />
+    <Compile Include="Entities\Reader.cs" />
     <Compile Include="IAuthorDao.cs" />
     <Compile Include="IBookDao.cs" />
     <Compile Include="ISettingsDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Entities\Discounts.cs" />
     <Compile Include="SettingsDao.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

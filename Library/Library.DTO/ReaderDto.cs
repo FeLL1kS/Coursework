@@ -7,12 +7,33 @@ namespace Library.DTO
 {
     public class ReaderDto
     {
+        /// <summary>
+        /// ИД
+        /// </summary>
         public int Id { get; set; }
+        /// <summary>
+        /// Имя
+        /// </summary>
         public string FirstName { get; set; }
+        /// <summary>
+        /// Фамилия
+        /// </summary>
         public string SeconName { get; set; }
+        /// <summary>
+        /// Отчество
+        /// </summary>
         public string Patronymic { get; set; }
+        /// <summary>
+        /// Адрес
+        /// </summary>
         public string Address { get; set; }
+        /// <summary>
+        /// Телефонный номер
+        /// </summary>
         public string PhoneNumber { get; set; }
+        /// <summary>
+        /// Ссылка на скидку
+        /// </summary>
         public DiscountsDto Discount { get; set; }
     }
 }

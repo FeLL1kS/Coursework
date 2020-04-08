@@ -7,8 +7,17 @@ namespace Library.DTO
 {
     public class FinesDto
     {
+        /// <summary>
+        /// ИД штрафа
+        /// </summary>
         public int Id { get; set; }
+        /// <summary>
+        /// Описание штрафа
+        /// </summary>
         public string FineDescription { get; set; }
+        /// <summary>
+        /// Цена штрафа
+        /// </summary>
         public double FinePrice { get; set; }
     }
 }

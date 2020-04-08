@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Library"
         mc:Ignorable="d"
-        Title="MainWindow" Height="375" Width="800">
+        Title="MainWindow" Height="385" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20*"/>
@@ -28,7 +28,7 @@
             <MenuItem Name = "About" Header="О программе" ></MenuItem>
         </Menu>
 
-        <DataGrid x:Name="dgAuthors" HorizontalAlignment="Left" Width="588" IsSynchronizedWithCurrentItem="True" IsReadOnly="True" AutoGenerateColumns="False" Margin="99,0.2,0,0.4" Visibility="Visible" Grid.ColumnSpan="2" Grid.Row="1">
+        <DataGrid x:Name="dgAuthors" HorizontalAlignment="Left" Width="588" IsSynchronizedWithCurrentItem="True" IsReadOnly="True" AutoGenerateColumns="False" Margin="99,0.2,0,0.4" Visibility="Hidden" Grid.ColumnSpan="2" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ФИО" Binding="{Binding Path=FullName}" />
             </DataGrid.Columns>

@@ -57,7 +57,20 @@ namespace Library
 
         private void btnDeleteB_Click()
         {
-            throw new NotImplementedException();
+            BookDto book = dgBooks.SelectedItem as BookDto;
+
+            if(book == null)
+            {
+                MessageBox.Show("Выберите запись для удаления", "Удаление книги");
+                return;
+            }
+
+            MessageBoxResult result = MessageBox.Show("Удалить книгу " + book.Title + "?", "Удаление книги", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.No)
+                return;
+
+            ProcessFactory.GetBookProcess().Delete(book.Id);
         }
 
         private void btnDeleteA_Click()
@@ -101,7 +114,8 @@ namespace Library
 
         private void btnAddB_Click()
         {
-            throw new NotImplementedException();
+            AddBookWindow window = new AddBookWindow();
+            window.ShowDialog();
         }
 
         private void btnAddA_Click()
@@ -133,7 +147,17 @@ namespace Library
 
         private void btnEditB_Click()
         {
-            throw new NotImplementedException();
+            BookDto book = dgBooks.SelectedItem as BookDto;
+
+            if (book == null)
+            {
+                MessageBox.Show("Выберите запись для редактирования", "Редактирование книги");
+                return;
+            }
+
+            AddBookWindow window = new AddBookWindow();
+            window.Load(book);
+            window.ShowDialog();
         }
 
         private void btnEditA_Click()
@@ -172,7 +196,8 @@ namespace Library
 
         private void btnRefreshB_Click()
         {
-            throw new NotImplementedException();
+            IList<BookDto> books = ProcessFactory.GetBookProcess().GetList();
+            dgBooks.ItemsSource = books;
         }
 
         private void btnRefreshA_Click()
@@ -191,6 +216,7 @@ namespace Library
             }
 
             dgAuthors.Visibility = Visibility.Visible;
+            statusLabel.Content = "Работа с таблицей: Авторы";
             status = "Authors";
             btnRefresh_Click(sender, e);
         }
@@ -205,6 +231,7 @@ namespace Library
             }
 
             dgBooks.Visibility = Visibility.Visible;
+            statusLabel.Content = "Работа с таблицей: Книги";
             status = "Books";
             btnRefresh_Click(sender, e);
         }

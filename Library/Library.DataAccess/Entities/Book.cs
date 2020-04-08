@@ -7,7 +7,7 @@ namespace Library.DataAccess.Entities
 {
     public class Book
     {
-        public int Id;
+        public int BookCode;
         public string Title;
         public string Genre;
         public double CollateralValue;

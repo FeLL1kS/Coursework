@@ -12,6 +12,11 @@ namespace Library.DataAccess
             return new AuthorDao();
         }
 
+        public static IBookDao GetBookDao()
+        {
+            return new BookDao();
+        }
+
         public static ISettingsDao GetSettingsDao()
         {
             return new SettingsDao();

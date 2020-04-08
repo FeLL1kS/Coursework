@@ -25,7 +25,7 @@ namespace Library.BusinessLayer
         /// <returns></returns>
         public static IBookProcess GetBookProcess()
         {
-            return new BookProcess();
+            return new BookProcessDb();
         }
 
         public static ISettingsProcess GetSettingsProcess()

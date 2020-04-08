@@ -135,5 +135,156 @@ namespace Library.BusinessLayer.Converters
 
             return discountsDtos;
         }
+
+        public static FinesDto Convert(Fines fine)
+        {
+            if (fine == null)
+                return null;
+
+            FinesDto fineDto = new FinesDto
+            {
+                Id = fine.FineCode,
+                FineDescription = fine.FineDescription,
+                FinePrice = fine.FinePrice
+            };
+
+            return fineDto;
+        }
+
+        public static Fines Convert(FinesDto fineDto)
+        {
+            if (fineDto == null)
+                return null;
+
+            Fines fine = new Fines
+            {
+                FineCode = fineDto.Id,
+                FineDescription = fineDto.FineDescription,
+                FinePrice = fineDto.FinePrice
+            };
+
+            return fine;
+        }
+
+        public static IList<FinesDto> Convert(IList<Fines> fines)
+        {
+            if (fines == null)
+                return null;
+
+            IList<FinesDto> fineDtos = new List<FinesDto>();
+
+            foreach(Fines fine in fines)
+            {
+                fineDtos.Add(Convert(fine));
+            }
+
+            return fineDtos;
+        }
+
+        public static ReaderDto Convert(Reader reader)
+        {
+            if (reader == null)
+                return null;
+
+            ReaderDto readerDto = new ReaderDto
+            {
+                Id = reader.ReaderCode,
+                FirstName = reader.FirstName,
+                SecondName = reader.SecondName,
+                Patronymic = reader.Patronymic,
+                Address = reader.Address,
+                PhoneNumber = reader.PhoneNumber,
+                Discount = ProcessFactory.GetDiscountProcess().Get(reader.DiscountCode)
+            };
+
+            return readerDto;
+        }
+
+        public static Reader Convert(ReaderDto readerDto)
+        {
+            if (readerDto == null)
+                return null;
+
+            Reader reader = new Reader
+            {
+                ReaderCode = readerDto.Id,
+                FirstName = readerDto.FirstName,
+                SecondName = readerDto.SecondName,
+                Patronymic = readerDto.Patronymic,
+                Address = readerDto.Address,
+                PhoneNumber = readerDto.PhoneNumber,
+                DiscountCode = readerDto.Discount.Id
+            };
+
+            return reader;
+        }
+
+        public static IList<ReaderDto> Convert(IList<Reader> readers)
+        {
+            if (readers == null)
+                return null;
+
+            IList<ReaderDto> readerDtos = new List<ReaderDto>();
+
+            foreach (Reader reader in readers)
+            {
+                readerDtos.Add(Convert(reader));
+            }
+
+            return readerDtos;
+        }
+
+        public static CardIndexDto Convert(CardIndex cardIndex)
+        {
+            if (cardIndex == null)
+                return null;
+
+            CardIndexDto cardIndexDto = new CardIndexDto
+            {
+                Id = cardIndex.IssuedBookID,
+                DateOfIssue = cardIndex.DateOfIssue,
+                ReturnDate = cardIndex.ReturnDate,
+                TotalPrice = cardIndex.TotalPrice,
+                Book = ProcessFactory.GetBookProcess().Get(cardIndex.BookCode),
+                Fine = ProcessFactory.GetFineProcess().Get(cardIndex.FineCode),
+                Reader = ProcessFactory.GetReaderProcess.Get(cardIndex.ReaderCode)
+            };
+            
+            return cardIndexDto;
+        }
+
+        public static CardIndex Convert(CardIndexDto cardIndexDto)
+        {
+            if (cardIndexDto == null)
+                return null;
+
+            CardIndex cardIndex = new CardIndex
+            {
+                IssuedBookID = cardIndexDto.Id,
+                DateOfIssue = cardIndexDto.DateOfIssue,
+                ReturnDate = cardIndexDto.ReturnDate,
+                TotalPrice = cardIndexDto.TotalPrice,
+                BookCode = cardIndexDto.Book.Id,
+                FineCode = cardIndexDto.Fine.Id,
+                ReaderCode = cardIndexDto.Reader.Id
+            };
+
+            return cardIndex;
+        }
+
+        public static IList<CardIndexDto> Convert(IList<CardIndex> cardIndices)
+        {
+            if (cardIndices == null)
+                return null;
+
+            IList<CardIndexDto> cardIndexDtos = new List<CardIndexDto>();
+
+            foreach(CardIndex cardIndex in cardIndices)
+            {
+                cardIndexDtos.Add(Convert(cardIndex));
+            }
+
+            return cardIndexDtos;
+        }
     }
 }

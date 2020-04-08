@@ -18,7 +18,7 @@ namespace Library.DTO
         /// <summary>
         /// Фамилия
         /// </summary>
-        public string SeconName { get; set; }
+        public string SecondName { get; set; }
         /// <summary>
         /// Отчество
         /// </summary>

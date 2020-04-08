@@ -56,8 +56,17 @@
     <Compile Include="AddBookWindow.xaml.cs">
       <DependentUpon>AddBookWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddCardIndexWindow.xaml.cs">
+      <DependentUpon>AddCardIndexWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddDiscountWindow.xaml.cs">
       <DependentUpon>AddDiscountWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddFineWindow.xaml.cs">
+      <DependentUpon>AddFineWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddReaderWindow.xaml.cs">
+      <DependentUpon>AddReaderWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
@@ -70,7 +79,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddCardIndexWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddDiscountWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddFineWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddReaderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

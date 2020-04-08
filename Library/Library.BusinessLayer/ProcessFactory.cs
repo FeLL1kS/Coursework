@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library.BusinessLayer.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,6 +36,21 @@ namespace Library.BusinessLayer
         public static IDiscountsProcess GetDiscountProcess()
         {
             return new DiscountsProcessDb();
+        }
+
+        public static IReaderProcess GetReaderProcess()
+        {
+            return new ReaderProcessDb();
+        }
+
+        public static IFinesProcess GetFinesProcess()
+        {
+            return new FinesProcessDb();
+        }
+
+        public static ICardIndexProcess GetCardIndexProcess()
+        {
+            return new CardIndexProcessDb();
         }
 
         public static ISettingsProcess GetSettingsProcess()

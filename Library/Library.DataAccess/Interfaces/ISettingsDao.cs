@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Library.DataAccess
+namespace Library.DataAccess.Interfaces
 {
     public interface ISettingsDao
     {

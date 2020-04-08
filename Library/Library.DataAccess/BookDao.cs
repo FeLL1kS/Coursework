@@ -1,4 +1,5 @@
-﻿using Library.DataAccess.Entities;
+﻿using Library.DataAccess.Interfaces;
+using Library.DataAccess.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,7 +49,7 @@ namespace Library.DataAccess
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = "SELECT Title, Genre, AuthorID, CollateralValue, CostPerDay FROM Book WHERE BookCode = @BookCode";
+                    cmd.CommandText = "SELECT BookCode, Title, Genre, AuthorID, CollateralValue, CostPerDay FROM Book WHERE BookCode = @BookCode";
                     cmd.Parameters.AddWithValue("@BookCode", id);
                     using(var dataReader = cmd.ExecuteReader())
                     {

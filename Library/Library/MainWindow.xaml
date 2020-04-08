@@ -5,20 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Library"
         mc:Ignorable="d"
-        Title="MainWindow" Height="385" Width="800">
+        Title="Библиотека" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20*"/>
-            <RowDefinition Height="280*"/>
-            <RowDefinition Height="30*"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50*"/>
-            <ColumnDefinition Width="300*"/>
-            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100"/>
         </Grid.ColumnDefinitions>
 
-        <Menu Height="20" HorizontalAlignment="Stretch" Name="mainMenu" VerticalAlignment="Top" Grid.ColumnSpan="3" Margin="0,0">
+
+        <Menu Height="20" HorizontalAlignment="Stretch" Name="mainMenu" VerticalAlignment="Top" Margin="0,0" Grid.Row="0" Grid.ColumnSpan="3">
             <MenuItem Name="DataBase" Header="База данных">
                 <MenuItem Name="dataBaseS" Header="Настроить соединение с имеющейся БД" Click="btnDatabase_Click"/>
             </MenuItem>
@@ -28,13 +29,13 @@
             <MenuItem Name = "About" Header="О программе" ></MenuItem>
         </Menu>
 
-        <DataGrid x:Name="dgAuthors" HorizontalAlignment="Left" Width="588" IsSynchronizedWithCurrentItem="True" IsReadOnly="True" AutoGenerateColumns="False" Margin="99,0.2,0,0.4" Visibility="Hidden" Grid.ColumnSpan="2" Grid.Row="1">
+        <DataGrid x:Name="dgAuthors" HorizontalAlignment="Left" IsSynchronizedWithCurrentItem="True" IsReadOnly="True" AutoGenerateColumns="False" Width="704" Margin="0,0" Grid.Row="1" Grid.Column="1" Visibility="Hidden">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ФИО" Binding="{Binding Path=FullName}" />
             </DataGrid.Columns>
         </DataGrid>
 
-        <DataGrid x:Name="dgBooks" HorizontalAlignment="Left" Width="588" IsSynchronizedWithCurrentItem="True" IsReadOnly="True" AutoGenerateColumns="False" Margin="99,20,0,0" Visibility="Hidden" Grid.ColumnSpan="2" Grid.RowSpan="2">
+        <DataGrid x:Name="dgBooks" HorizontalAlignment="Left" IsSynchronizedWithCurrentItem="True" IsReadOnly="True" AutoGenerateColumns="False" Width="704" Margin="0,0" Grid.Row="1" Grid.Column="1" Visibility="Hidden">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название" Binding="{Binding Path=Title}" />
                 <DataGridTextColumn Header="Жанр" Binding="{Binding Path=Genre}" />
@@ -44,14 +45,43 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <DataGrid x:Name="dgDiscounts" HorizontalAlignment="Left" Width="588" IsSynchronizedWithCurrentItem="True" IsReadOnly="True" AutoGenerateColumns="False" Margin="99,0.2,0,0.4" Visibility="Hidden" Grid.ColumnSpan="2" Grid.Row="1">
+        <DataGrid x:Name="dgDiscounts" HorizontalAlignment="Left" IsSynchronizedWithCurrentItem="True" IsReadOnly="True" AutoGenerateColumns="False" Width="704" Margin="0,0" Grid.Row="1" Grid.Column="1" Visibility="Hidden">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Описание" Binding="{Binding Path=DiscountDescription}" />
                 <DataGridTextColumn Header="Процент" Binding="{Binding Path=DiscountPercent}" />
             </DataGrid.Columns>
         </DataGrid>
 
-        <StackPanel HorizontalAlignment="Left" Margin="0,0" VerticalAlignment="Top" Width="100" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2">
+        <DataGrid x:Name="dgFines" HorizontalAlignment="Left" IsSynchronizedWithCurrentItem="True" IsReadOnly="True" AutoGenerateColumns="False" Width="704" Margin="0,0" Grid.Row="1" Grid.Column="1" Visibility="Hidden">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Описание" Binding="{Binding Path=FineDescription}" />
+                <DataGridTextColumn Header="Цена штрафа" Binding="{Binding Path=FinePrice}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid x:Name="dgReaders" HorizontalAlignment="Left" IsSynchronizedWithCurrentItem="True" IsReadOnly="True" AutoGenerateColumns="False" Width="704" Margin="0,0" Grid.Row="1" Grid.Column="1" Visibility="Hidden" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Path=FirstName}" />
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=SecondName}" />
+                <DataGridTextColumn Header="Отчество" Binding="{Binding Path=Patronymic}" />
+                <DataGridTextColumn Header="Адресс" Binding="{Binding Path=Address}" />
+                <DataGridTextColumn Header="Номер телефона" Binding="{Binding Path=PhoneNumber}" />
+                <DataGridTextColumn Header="Процент скидки" Binding="{Binding Path=Discount.DiscountPercent}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid x:Name="dgCardIndecies" HorizontalAlignment="Left" IsSynchronizedWithCurrentItem="True" IsReadOnly="True" AutoGenerateColumns="False" Width="704" Margin="0,0" Grid.Row="1" Grid.Column="1" Visibility="Hidden" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Дата выдачи" Binding="{Binding Path=DateOfIssue}" />
+                <DataGridTextColumn Header="Дата возврата" Binding="{Binding Path=ReturnDate}" />
+                <DataGridTextColumn Header="Книга" Binding="{Binding Path=Book.Title}" />
+                <DataGridTextColumn Header="Штраф" Binding="{Binding Path=Fine.FineDescription}" />
+                <DataGridTextColumn Header="Читатель" Binding="{Binding Path=Reader.SecondName}" />
+                <DataGridTextColumn Header="Общая цена" Binding="{Binding Path=TotalPrice}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel HorizontalAlignment="Left" Margin="0,0" VerticalAlignment="Top" Width="100" Grid.Row="1" Grid.Column="0">
             <Button x:Name="btnAuthors" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="73" Click="btnTable_Click">
                 <Button.ToolTip>
                     <TextBlock><Run Text="Информации о авторах"/></TextBlock>
@@ -79,9 +109,36 @@
                     <TextBlock HorizontalAlignment="Center" Margin="1" FontSize="10"><Run Text="Скидки"/></TextBlock>
                 </StackPanel>
             </Button>
+            <Button x:Name="btnFines" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="73" Click="btnTable_Click">
+                <Button.ToolTip>
+                    <TextBlock><Run Text="Информации о штрафах"/></TextBlock>
+                </Button.ToolTip>
+                <StackPanel>
+                    <Image Source="component\Images\Fine.ico" Height="45" Width="70"/>
+                    <TextBlock HorizontalAlignment="Center" Margin="1" FontSize="10"><Run Text="Штрафы"/></TextBlock>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnReaders" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="73" Click="btnTable_Click">
+                <Button.ToolTip>
+                    <TextBlock><Run Text="Информации о читателях"/></TextBlock>
+                </Button.ToolTip>
+                <StackPanel>
+                    <Image Source="component\Images\Reader.ico" Height="45" Width="70"/>
+                    <TextBlock HorizontalAlignment="Center" Margin="1" FontSize="10"><Run Text="Читатели"/></TextBlock>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnCardIndecies" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="73" Click="btnTable_Click">
+                <Button.ToolTip>
+                    <TextBlock><Run Text="Информации о картотеке"/></TextBlock>
+                </Button.ToolTip>
+                <StackPanel>
+                    <Image Source="component\Images\CardIndex.ico" Height="45" Width="70"/>
+                    <TextBlock HorizontalAlignment="Center" Margin="1" FontSize="10"><Run Text="Картотека"/></TextBlock>
+                </StackPanel>
+            </Button>
         </StackPanel>
 
-        <StackPanel HorizontalAlignment="Right" Margin="0,0" VerticalAlignment="Top" Width="100" Grid.Column="2" Grid.Row="1">
+        <StackPanel HorizontalAlignment="Right" Margin="0,0" VerticalAlignment="Top" Width="100" Height="291" Grid.Row="1" Grid.Column="2">
             <Button x:Name="btnAdd" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="73" Click="btnAdd_Click">
                 <Button.ToolTip>
                     <TextBlock><Run Text="Добавить запись в выбранную таблицу"/></TextBlock>
@@ -120,7 +177,7 @@
             </Button>
         </StackPanel>
 
-        <StatusBar x:Name="statusBar" HorizontalAlignment="Stretch" Height="30" Margin="1,0,0,0" Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom">
+        <StatusBar x:Name="statusBar" HorizontalAlignment="Stretch" Height="30" Margin="0,0" Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom">
             <Label Name="statusLabel" Content="Работа с таблицей: " Visibility="Visible"></Label>
         </StatusBar>
     </Grid>

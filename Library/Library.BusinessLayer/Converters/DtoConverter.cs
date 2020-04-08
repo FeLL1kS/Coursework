@@ -246,8 +246,8 @@ namespace Library.BusinessLayer.Converters
                 ReturnDate = cardIndex.ReturnDate,
                 TotalPrice = cardIndex.TotalPrice,
                 Book = ProcessFactory.GetBookProcess().Get(cardIndex.BookCode),
-                Fine = ProcessFactory.GetFineProcess().Get(cardIndex.FineCode),
-                Reader = ProcessFactory.GetReaderProcess.Get(cardIndex.ReaderCode)
+                Fine = ProcessFactory.GetFinesProcess().Get(cardIndex.FineCode),
+                Reader = ProcessFactory.GetReaderProcess().Get(cardIndex.ReaderCode)
             };
             
             return cardIndexDto;

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Library.DTO;
 
-namespace Library.BusinessLayer
+namespace Library.BusinessLayer.Interfaces
 {
     public interface IDiscountsProcess
     {

@@ -1,4 +1,6 @@
-﻿using Library.DTO;
+﻿using Library.BusinessLayer.Interfaces;
+using Library.DataAccess.Interfaces;
+using Library.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;

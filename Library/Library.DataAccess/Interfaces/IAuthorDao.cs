@@ -2,39 +2,40 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Library.DTO;
+using Library.DataAccess.Entities;
 
-namespace Library.BusinessLayer
+namespace Library.DataAccess.Interfaces
 {
     /// <summary>
-    /// Декларация действий о работе с автором
+    /// Декларация действий о работе с объектом автора в базе
     /// </summary>
-    public interface IAuthorProcess
+    public interface IAuthorDao
     {
+
         /// <summary>
         /// Возвращает список авторов
         /// </summary>
         /// <returns>список авторов</returns>
-        IList<AuthorDto> GetList();
+        IList<Author> GetList();
 
         /// <summary>
         /// Возвращает автора по ID
         /// </summary>
         /// <param name="id">ID автора</param>
         /// <returns>Автор</returns>
-        AuthorDto Get(int id);
+        Author Get(int id);
 
         /// <summary>
         /// Добавляет автора
         /// </summary>
         /// <param name="author">Автор</param>
-        void Add(AuthorDto author);
+        void Add(Author author);
 
         /// <summary>
         /// Обновляет данные об авторе
         /// </summary>
         /// <param name="author">Автор, которого нужно изменить</param>
-        void Update(AuthorDto author);
+        void Update(Author author);
 
         /// <summary>
         /// Удаляет автора

@@ -68,15 +68,16 @@ namespace Library
                 return;
             }
 
-            BookDto book = new BookDto();
+            BookDto book = new BookDto
+            {
+                Title = tbTitle.Text,
+                Genre = tbGenre.Text,
+                CostPerDay = Convert.ToDouble(tbCostPerDay.Text),
+                CollateralValue = Convert.ToDouble(tbCollateralValue.Text),
+                Author = cbAuthor.SelectedItem as AuthorDto
+            };
 
-            book.Title = tbTitle.Text;
-            book.Genre = tbGenre.Text;
-            book.CostPerDay = Convert.ToDouble(tbCostPerDay.Text);
-            book.CollateralValue = Convert.ToDouble(tbCollateralValue.Text);
-            book.Author = cbAuthor.SelectedItem as AuthorDto;
-
-            if(_id == 0)
+            if (_id == 0)
             {
                 ProcessFactory.GetBookProcess().Add(book);
             }

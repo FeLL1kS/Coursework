@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Library.DataAccess.Entities;
 
-namespace Library.DataAccess
+namespace Library.DataAccess.Interfaces
 {
     public interface IDiscountsDao
     {
@@ -18,13 +18,13 @@ namespace Library.DataAccess
         /// Возвращает скидку по ID
         /// </summary>
         /// <param name="id">ID скидки</param>
-        /// <returns>Книга</returns>
+        /// <returns>Скидка</returns>
         Discounts Get(int id);
 
         /// <summary>
         /// Добавляет скидку
         /// </summary>
-        /// <param name="discount">Книга</param>
+        /// <param name="discount">Скидка</param>
         void Add(Discounts discount);
 
         /// <summary>

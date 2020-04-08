@@ -1,0 +1,35 @@
+﻿<Window x:Class="Library.AddCardIndexWindow"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ Title="SettingsWindow" ResizeMode="NoResize" SizeToContent="WidthAndHeight"
+WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow">
+
+    <Grid Margin="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="15*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="150"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Дата выдачи" Grid.Row="0" Grid.Column="0"/>
+        <TextBlock Text="Дата возврата" Grid.Row="1" Grid.Column="0"/>
+        <TextBlock Text="Книга" Grid.Row="2" Grid.Column="0"/>
+        <TextBlock Text="Читатель" Grid.Row="3" Grid.Column="0"/>
+        <TextBlock Text="Штраф" Grid.Row="4" Grid.Column="0"/>
+        <DatePicker Name="dpDateOfIssue" Grid.Row="0" Grid.Column="1" Margin="3"/>
+        <DatePicker Name="dpReturnDate" Grid.Row="1" Grid.Column="1" Margin="3"/>
+        <ComboBox Name="cbBook" Grid.Row="2" Grid.Column="2" Margin="3" ItemsSource="{Binding}" DisplayMemberPath="Title"/>
+        <ComboBox Name="cbReader" Grid.Row="3" Grid.Column="2" Margin="3" ItemsSource="{Binding}" DisplayMemberPath="SecondName"/>
+        <ComboBox Name="cbFine" Grid.Row="4" Grid.Column="2" Margin="3" ItemsSource="{Binding}" DisplayMemberPath="FineDescription"/>
+        <Button Name="btnSave" Grid.Row="5" Grid.Column="0" Content="Сохранить" Margin="3" Click="btnSave_Click" />
+        <Button Name="btnCancel" Grid.Row="5" Grid.Column="1" Content="Закрыть" Margin="3" Click="btnCancel_Click" />
+    </Grid>
+</Window>
+

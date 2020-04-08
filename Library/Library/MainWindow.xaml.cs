@@ -47,6 +47,15 @@ namespace Library
                 case ("Discounts"):
                     this.btnDeleleD_Click();
                     break;
+                case ("Fines"):
+                    this.btnDeleleF_Click();
+                    break;
+                case ("Readers"):
+                    this.btnDeleleR_Click();
+                    break;
+                case ("CardIndecies"):
+                    this.btnDeleleC_Click();
+                    break;
             }
 
             if (status == null)
@@ -56,6 +65,60 @@ namespace Library
             }
 
             btnRefresh_Click(sender, e);
+        }
+
+        private void btnDeleleC_Click()
+        {
+            CardIndexDto cardIndex = dgCardIndecies.SelectedItem as CardIndexDto;
+
+            if (cardIndex == null)
+            {
+                MessageBox.Show("Выберите запись для удаления", "Удаление записи в картотеке");
+                return;
+            }
+
+            MessageBoxResult result = MessageBox.Show("Удалить запись?", "Удаление записи в картотеке", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.No)
+                return;
+
+            ProcessFactory.GetCardIndexProcess().Delete(cardIndex.Id);
+        }
+
+        private void btnDeleleR_Click()
+        {
+            ReaderDto reader = dgReaders.SelectedItem as ReaderDto;
+
+            if (reader == null)
+            {
+                MessageBox.Show("Выберите запись для удаления", "Удаление читателя");
+                return;
+            }
+
+            MessageBoxResult result = MessageBox.Show("Удалить читателя" + reader.SecondName + "?", "Удаление книги", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.No)
+                return;
+
+            ProcessFactory.GetReaderProcess().Delete(reader.Id);
+        }
+
+        private void btnDeleleF_Click()
+        {
+            FinesDto fine = dgFines.SelectedItem as FinesDto;
+
+            if (fine == null)
+            {
+                MessageBox.Show("Выберите запись для удаления", "Удаление штрафа");
+                return;
+            }
+
+            MessageBoxResult result = MessageBox.Show("Удалить штраф?", "Удаление штрафа", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.No)
+                return;
+
+            ProcessFactory.GetFinesProcess().Delete(fine.Id);
         }
 
         private void btnDeleleD_Click()
@@ -68,7 +131,7 @@ namespace Library
                 return;
             }
 
-            MessageBoxResult result = MessageBox.Show("Удалить скидку?", "Удаление книги", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            MessageBoxResult result = MessageBox.Show("Удалить скидку?", "Удаление скидки", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
             if (result == MessageBoxResult.No)
                 return;
@@ -125,6 +188,15 @@ namespace Library
                 case ("Discounts"):
                     this.btnAddD_Click();
                     break;
+                case ("Fines"):
+                    this.btnAddF_Click();
+                    break;
+                case ("Readers"):
+                    this.btnAddR_Click();
+                    break;
+                case ("CardIndecies"):
+                    this.btnAddC_Click();
+                    break;
             }
 
             if (status == null)
@@ -134,6 +206,24 @@ namespace Library
             }
 
             btnRefresh_Click(sender, e);
+        }
+
+        private void btnAddC_Click()
+        {
+            AddCardIndexWindow window = new AddCardIndexWindow();
+            window.ShowDialog();
+        }
+
+        private void btnAddR_Click()
+        {
+            AddReaderWindow window = new AddReaderWindow();
+            window.ShowDialog();
+        }
+
+        private void btnAddF_Click()
+        {
+            AddFineWindow window = new AddFineWindow();
+            window.ShowDialog();
         }
 
         private void btnAddD_Click()
@@ -167,6 +257,15 @@ namespace Library
                 case ("Discounts"):
                     this.btnEditD_Click();
                     break;
+                case ("Fines"):
+                    this.btnEditF_Click();
+                    break;
+                case ("Readers"):
+                    this.btnEditR_Click();
+                    break;
+                case ("CardIndecies"):
+                    this.btnEditC_Click();
+                    break;
             }
 
             if (status == null)
@@ -176,6 +275,51 @@ namespace Library
             }
 
             btnRefresh_Click(sender, e);
+        }
+
+        private void btnEditC_Click()
+        {
+            CardIndexDto cardIndex = dgCardIndecies.SelectedItem as CardIndexDto;
+
+            if (cardIndex == null)
+            {
+                MessageBox.Show("Выберите запись для редактирования", "Редактирование записи в картотеке");
+                return;
+            }
+
+            AddCardIndexWindow window = new AddCardIndexWindow();
+            window.Load(cardIndex);
+            window.ShowDialog();
+        }
+
+        private void btnEditR_Click()
+        {
+            ReaderDto reader = dgReaders.SelectedItem as ReaderDto;
+
+            if (reader == null)
+            {
+                MessageBox.Show("Выберите запись для редактирования", "Редактирование читателя");
+                return;
+            }
+
+            AddReaderWindow window = new AddReaderWindow();
+            window.Load(reader);
+            window.ShowDialog();
+        }
+
+        private void btnEditF_Click()
+        {
+            FinesDto fine = dgFines.SelectedItem as FinesDto;
+
+            if (fine == null)
+            {
+                MessageBox.Show("Выберите запись для редактирования", "Редактирование штрафа");
+                return;
+            }
+
+            AddFineWindow window = new AddFineWindow();
+            window.Load(fine);
+            window.ShowDialog();
         }
 
         private void btnEditD_Click()
@@ -236,6 +380,15 @@ namespace Library
                 case ("Discounts"):
                     this.btnRefreshD_Click();
                     break;
+                case ("Fines"):
+                    this.btnRefreshF_Click();
+                    break;
+                case ("Readers"):
+                    this.btnRefreshR_Click();
+                    break;
+                case ("CardIndecies"):
+                    this.btnRefreshC_Click();
+                    break;
             }
 
             if (status == null)
@@ -245,22 +398,34 @@ namespace Library
             }
         }
 
+        private void btnRefreshC_Click()
+        {
+            dgCardIndecies.ItemsSource = ProcessFactory.GetCardIndexProcess().GetList();
+        }
+
+        private void btnRefreshR_Click()
+        {
+            dgReaders.ItemsSource = ProcessFactory.GetReaderProcess().GetList();
+        }
+
+        private void btnRefreshF_Click()
+        {
+            dgFines.ItemsSource = ProcessFactory.GetFinesProcess().GetList();
+        }
+
         private void btnRefreshD_Click()
         {
-            IList<DiscountsDto> discounts = ProcessFactory.GetDiscountProcess().GetList();
-            dgDiscounts.ItemsSource = discounts;
+            dgDiscounts.ItemsSource = ProcessFactory.GetDiscountProcess().GetList();
         }
 
         private void btnRefreshB_Click()
         {
-            IList<BookDto> books = ProcessFactory.GetBookProcess().GetList();
-            dgBooks.ItemsSource = books;
+            dgBooks.ItemsSource = ProcessFactory.GetBookProcess().GetList();
         }
 
         private void btnRefreshA_Click()
         {
-            IList<AuthorDto> authors = ProcessFactory.GetAuthorProcess().GetList();
-            dgAuthors.ItemsSource = authors;
+            dgAuthors.ItemsSource = ProcessFactory.GetAuthorProcess().GetList();
         }
 
         private void btnTable_Click(object sender, RoutedEventArgs e)
@@ -270,6 +435,9 @@ namespace Library
                 case ("btnDiscounts"):
                     dgAuthors.Visibility = Visibility.Hidden;
                     dgBooks.Visibility = Visibility.Hidden;
+                    dgFines.Visibility = Visibility.Hidden;
+                    dgCardIndecies.Visibility = Visibility.Hidden;
+                    dgReaders.Visibility = Visibility.Hidden;
                     dgDiscounts.Visibility = Visibility.Visible;
                     statusLabel.Content = "Работа с таблицей: Скидки";
                     status = "Discounts";
@@ -278,6 +446,9 @@ namespace Library
                     dgAuthors.Visibility = Visibility.Hidden;
                     dgDiscounts.Visibility = Visibility.Hidden;
                     dgBooks.Visibility = Visibility.Visible;
+                    dgFines.Visibility = Visibility.Hidden;
+                    dgCardIndecies.Visibility = Visibility.Hidden;
+                    dgReaders.Visibility = Visibility.Hidden;
                     statusLabel.Content = "Работа с таблицей: Книги";
                     status = "Books";
                     break;
@@ -285,8 +456,41 @@ namespace Library
                     dgDiscounts.Visibility = Visibility.Hidden;
                     dgBooks.Visibility = Visibility.Hidden;
                     dgAuthors.Visibility = Visibility.Visible;
+                    dgFines.Visibility = Visibility.Hidden;
+                    dgCardIndecies.Visibility = Visibility.Hidden;
+                    dgReaders.Visibility = Visibility.Hidden;
                     statusLabel.Content = "Работа с таблицей: Авторы";
                     status = "Authors";
+                    break;
+                case ("btnReaders"):
+                    dgDiscounts.Visibility = Visibility.Hidden;
+                    dgAuthors.Visibility = Visibility.Hidden;
+                    dgBooks.Visibility = Visibility.Hidden;
+                    dgFines.Visibility = Visibility.Hidden;
+                    dgCardIndecies.Visibility = Visibility.Hidden;
+                    dgReaders.Visibility = Visibility.Visible;
+                    statusLabel.Content = "Работа с таблицей: Читатели";
+                    status = "Readers";
+                    break;
+                case ("btnFines"):
+                    dgDiscounts.Visibility = Visibility.Hidden;
+                    dgAuthors.Visibility = Visibility.Hidden;
+                    dgBooks.Visibility = Visibility.Hidden;
+                    dgCardIndecies.Visibility = Visibility.Hidden;
+                    dgReaders.Visibility = Visibility.Hidden;
+                    dgFines.Visibility = Visibility.Visible;
+                    statusLabel.Content = "Работа с таблицей: Штрафы";
+                    status = "Fines";
+                    break;
+                case ("btnCardIndecies"):
+                    dgDiscounts.Visibility = Visibility.Hidden;
+                    dgAuthors.Visibility = Visibility.Hidden;
+                    dgBooks.Visibility = Visibility.Hidden;
+                    dgFines.Visibility = Visibility.Hidden;
+                    dgReaders.Visibility = Visibility.Hidden;
+                    dgCardIndecies.Visibility = Visibility.Visible;
+                    statusLabel.Content = "Работа с таблицей: Картотека";
+                    status = "CardIndecies";
                     break;
             }
 

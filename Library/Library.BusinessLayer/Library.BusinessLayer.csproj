@@ -42,14 +42,20 @@
   <ItemGroup>
     <Compile Include="AuthorProcessDb.cs" />
     <Compile Include="BookProcessDb.cs" />
+    <Compile Include="CardIndexProcessDb.cs" />
     <Compile Include="Converters\DtoConverter.cs" />
     <Compile Include="DiscountsProcessDb.cs" />
-    <Compile Include="IAuthorProcess.cs" />
-    <Compile Include="IBookProcess.cs" />
-    <Compile Include="IDiscountsProcess.cs" />
-    <Compile Include="ISettingsProcess.cs" />
+    <Compile Include="FinesProcessDb.cs" />
+    <Compile Include="Interfaces\IAuthorProcess.cs" />
+    <Compile Include="Interfaces\IBookProcess.cs" />
+    <Compile Include="Interfaces\ICardIndexProcess.cs" />
+    <Compile Include="Interfaces\IDiscountsProcess.cs" />
+    <Compile Include="Interfaces\IFinesProcess.cs" />
+    <Compile Include="Interfaces\IReaderProcess.cs" />
+    <Compile Include="Interfaces\ISettingsProcess.cs" />
     <Compile Include="ProcessFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReaderProcessDb.cs" />
     <Compile Include="SettingsProcess.cs" />
   </ItemGroup>
   <ItemGroup>

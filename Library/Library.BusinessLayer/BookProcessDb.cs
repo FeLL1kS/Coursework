@@ -38,6 +38,11 @@ namespace Library.BusinessLayer
             return DtoConverter.Convert(_bookDao.GetList());
         }
 
+        public IList<BookDto> SearchBooks(string Title, string Genre, string AuthorID)
+        {
+            return DtoConverter.Convert(_bookDao.SearchBooks(Title, Genre, AuthorID));
+        }
+
         public void Update(BookDto book)
         {
             _bookDao.Update(DtoConverter.Convert(book));

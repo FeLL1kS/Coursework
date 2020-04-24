@@ -38,6 +38,11 @@ namespace Library.BusinessLayer
             return DtoConverter.Convert(_authorDao.GetList());
         }
 
+        public IList<AuthorDto> SearchAuthors(string Name)
+        {
+            return DtoConverter.Convert(_authorDao.SearchAuthors(Name));
+        }
+
         public void Update(AuthorDto author)
         {
             _authorDao.Update(DtoConverter.Convert(author));

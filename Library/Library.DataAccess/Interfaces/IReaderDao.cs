@@ -38,5 +38,15 @@ namespace Library.DataAccess.Interfaces
         /// </summary>
         /// <param name="id">ID читателя</param>
         void Delete(int id);
+
+        /// <summary>
+        /// Поиск читателей
+        /// </summary>
+        /// <param name="FirstName">Имя читателя</param>
+        /// <param name="SecondName">Фамилия читателя</param>
+        /// <param name="Patronymic">Отчество читателя</param>
+        /// <param name="DiscountCode">ID процента скидки</param>
+        /// <returns>Список читателей</returns>
+        IList<Reader> SearchReaders(string FirstName, string SecondName, string Patronymic, string DiscountCode);
     }
 }

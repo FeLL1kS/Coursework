@@ -38,5 +38,14 @@ namespace Library.BusinessLayer.Interfaces
         /// </summary>
         /// <param name="id">ID книги</param>
         void Delete(int id);
+
+        /// <summary>
+        /// Поиск книг
+        /// </summary>
+        /// <param name="Title">Название книги</param>
+        /// <param name="Genre">Жанр книги</param>
+        /// <param name="AuthorID">Идентификатор автора</param>
+        /// <returns>Список книг</returns>
+        IList<BookDto> SearchBooks(string Title, string Genre, string AuthorID);
     }
 }

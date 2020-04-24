@@ -41,5 +41,12 @@ namespace Library.BusinessLayer.Interfaces
         /// </summary>
         /// <param name="id">ID автора</param>
         void Delete(int id);
+
+        /// <summary>
+        /// Ищет авторов по имени
+        /// </summary>
+        /// <param name="Name">ФИО автора</param>
+        /// <returns>Список авторов</returns>
+        IList<AuthorDto> SearchAuthors(string Name);
     }
 }

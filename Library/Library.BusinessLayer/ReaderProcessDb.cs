@@ -43,5 +43,10 @@ namespace Library.BusinessLayer
         {
             _readerDao.Update(DtoConverter.Convert(reader));
         }
+
+        public IList<ReaderDto> SearchReaders(string FirstName, string SecondName, string Patronymic, string DiscountID)
+        {
+            return DtoConverter.Convert(_readerDao.SearchReaders(FirstName, SecondName, Patronymic, DiscountID));
+        }
     }
 }

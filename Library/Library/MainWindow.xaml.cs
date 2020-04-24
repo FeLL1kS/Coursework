@@ -439,6 +439,7 @@ namespace Library
                     dgCardIndecies.Visibility = Visibility.Hidden;
                     dgReaders.Visibility = Visibility.Hidden;
                     dgDiscounts.Visibility = Visibility.Visible;
+                    Search.Visibility = Visibility.Collapsed;
                     statusLabel.Content = "Работа с таблицей: Скидки";
                     status = "Discounts";
                     break;
@@ -449,6 +450,7 @@ namespace Library
                     dgFines.Visibility = Visibility.Hidden;
                     dgCardIndecies.Visibility = Visibility.Hidden;
                     dgReaders.Visibility = Visibility.Hidden;
+                    Search.Visibility = Visibility.Visible;
                     statusLabel.Content = "Работа с таблицей: Книги";
                     status = "Books";
                     break;
@@ -459,6 +461,7 @@ namespace Library
                     dgFines.Visibility = Visibility.Hidden;
                     dgCardIndecies.Visibility = Visibility.Hidden;
                     dgReaders.Visibility = Visibility.Hidden;
+                    Search.Visibility = Visibility.Visible;
                     statusLabel.Content = "Работа с таблицей: Авторы";
                     status = "Authors";
                     break;
@@ -469,6 +472,7 @@ namespace Library
                     dgFines.Visibility = Visibility.Hidden;
                     dgCardIndecies.Visibility = Visibility.Hidden;
                     dgReaders.Visibility = Visibility.Visible;
+                    Search.Visibility = Visibility.Visible;
                     statusLabel.Content = "Работа с таблицей: Читатели";
                     status = "Readers";
                     break;
@@ -479,6 +483,7 @@ namespace Library
                     dgCardIndecies.Visibility = Visibility.Hidden;
                     dgReaders.Visibility = Visibility.Hidden;
                     dgFines.Visibility = Visibility.Visible;
+                    Search.Visibility = Visibility.Visible;
                     statusLabel.Content = "Работа с таблицей: Штрафы";
                     status = "Fines";
                     break;
@@ -489,12 +494,61 @@ namespace Library
                     dgFines.Visibility = Visibility.Hidden;
                     dgReaders.Visibility = Visibility.Hidden;
                     dgCardIndecies.Visibility = Visibility.Visible;
+                    Search.Visibility = Visibility.Visible;
                     statusLabel.Content = "Работа с таблицей: Картотека";
                     status = "CardIndecies";
                     break;
             }
 
             btnRefresh_Click(sender, e);
+        }
+
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+            SearchWindow window = new SearchWindow(status);
+            {
+                switch(status)
+                {
+                    case "Authors":
+                        window.ShowDialog();
+                        if(window.exec)
+                        {
+                            dgAuthors.ItemsSource = window.FindedAuthors;
+                        }
+                        break;
+                    case "Books":
+                        window.ShowDialog();
+                        if(window.exec)
+                        {
+                            dgBooks.ItemsSource = window.FindedBooks;
+                        }
+                        break;
+                    case "Fines":
+                        window.ShowDialog();
+                        if(window.exec)
+                        {
+                            dgFines.ItemsSource = window.FindedFines;
+                        }
+                        break;
+                    case "Readers":
+                        window.ShowDialog();
+                        if (window.exec)
+                        {
+                            dgReaders.ItemsSource = window.FindedReaders;
+                        }
+                        break;
+                    case "CardIndecies":
+                        window.ShowDialog();
+                        if(window.exec)
+                        {
+                            dgCardIndecies.ItemsSource = window.FindedCardIndecies;
+                        }
+                        break;
+                    default:
+                        MessageBox.Show("Выберите таблицу для поиска!", "Ошибка");
+                        break;
+                }
+            }
         }
     }
 }

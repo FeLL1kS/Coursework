@@ -95,6 +95,39 @@ namespace Library.DataAccess
             }
         }
 
+        public IList<Fines> SearchFines(string PriceFrom, string PriceTo)
+        {
+            IList<Fines> fines = new List<Fines>();
+
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    if(PriceTo == "")
+                    {
+                        cmd.CommandText = "SELECT FineCode, FineDescription, FinePrice FROM Fines WHERE FinePrice > @PriceFrom";
+                    }
+                    else
+                    {
+                        cmd.CommandText = "SELECT FineCode, FineDescription, FinePrice FROM Fines WHERE FinePrice > @PriceFrom and FinePrice < @PriceTo";
+                        cmd.Parameters.AddWithValue("@PriceTo", PriceTo);
+                    }
+                    cmd.Parameters.AddWithValue("@PriceFrom", PriceFrom);
+
+                    using (var dataReader = cmd.ExecuteReader())
+                    {
+                        while (dataReader.Read())
+                        {
+                            fines.Add(LoadFine(dataReader));
+                        }
+
+                        return fines;
+                    }
+                }
+            }
+        }
+
         public Fines LoadFine(SqlDataReader dataReader)
         {
             Fines fine = new Fines

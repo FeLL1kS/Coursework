@@ -47,7 +47,7 @@ namespace Library.DataAccess
                 {
                     cmd.CommandText = "SELECT AuthorID, FullName FROM Author WHERE AuthorID = @ID";
                     cmd.Parameters.AddWithValue("@ID", id);
-                    
+
                     using (var dataReader = cmd.ExecuteReader())
                     {
                         return dataReader.Read() ? LoadAuthor(dataReader) : null;
@@ -60,16 +60,16 @@ namespace Library.DataAccess
         {
             IList<Author> authors = new List<Author>();
 
-            using(var conn = GetConnection())
+            using (var conn = GetConnection())
             {
                 conn.Open();
-                using(var cmd = conn.CreateCommand())
+                using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = "SELECT AuthorID, FullName FROM Author";
 
-                    using(var dataReader = cmd.ExecuteReader())
+                    using (var dataReader = cmd.ExecuteReader())
                     {
-                        while(dataReader.Read())
+                        while (dataReader.Read())
                         {
                             authors.Add(LoadAuthor(dataReader));
                         }
@@ -91,6 +91,31 @@ namespace Library.DataAccess
                     cmd.Parameters.AddWithValue("@ID", author.Id);
                     cmd.Parameters.AddWithValue("@FullName", author.FullName);
                     cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public IList<Author> SearchAuthors(string Name)
+        {
+            IList<Author> authors = new List<Author>();
+
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT AuthorID, FullName FROM Author WHERE FullName LIKE @Name";
+                    cmd.Parameters.AddWithValue("@Name", "%" + Name + "%");
+
+                    using (var dataReader = cmd.ExecuteReader())
+                    {
+                        while (dataReader.Read())
+                        {
+                            authors.Add(LoadAuthor(dataReader));
+                        }
+
+                        return authors;
+                    }
                 }
             }
         }

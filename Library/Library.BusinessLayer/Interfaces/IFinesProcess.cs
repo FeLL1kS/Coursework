@@ -38,5 +38,13 @@ namespace Library.BusinessLayer.Interfaces
         /// </summary>
         /// <param name="id">ID штрафа</param>
         void Delete(int id);
+
+        /// <summary>
+        /// Поиск по штрафам
+        /// </summary>
+        /// <param name="PriceFrom">Начальная цена</param>
+        /// <param name="PriceTo">Конечная цена</param>
+        /// <returns>Список штрафов</returns>
+        IList<FinesDto> SearchFines(string PriceFrom, string PriceTo);
     }
 }

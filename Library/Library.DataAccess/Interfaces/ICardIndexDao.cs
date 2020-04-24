@@ -38,5 +38,19 @@ namespace Library.DataAccess.Interfaces
         /// </summary>
         /// <param name="id">ID записи</param>
         void Delete(int id);
+
+        /// <summary>
+        /// Поиск в картотеке
+        /// </summary>
+        /// <param name="ReturnDateFrom">Начальная дата для поиска по дате возврата</param>
+        /// <param name="ReturnDateTo">Конечная дата для поиска по дате возврата</param>
+        /// <param name="DateOfIssueFrom">Начальная дата для поиска по дате выдачи</param>
+        /// <param name="DateOfIssueTo">Конечная дата для поиска по дате выдачи</param>
+        /// <param name="TotalPrice">Стоимость</param>
+        /// <param name="ReaderCode">Читатель</param>
+        /// <param name="BookCode">Книга</param>
+        /// <param name="FineCode">Штраф</param>
+        /// <returns>Список читателей</returns>
+        IList<CardIndex> SearchCardIndices(string ReturnDateFrom, string ReturnDateTo, string DateOfIssueFrom, string DateOfIssueTo, string TotalPrice, string ReaderCode, string BookCode, string FineCode);
     }
 }

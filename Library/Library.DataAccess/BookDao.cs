@@ -115,5 +115,32 @@ namespace Library.DataAccess
 
             return book;
         }
+
+        public IList<Book> SearchBooks(string Title, string Genre, string AuthorID)
+        {
+            IList<Book> books = new List<Book>();
+
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT BookCode, Title, Genre, AuthorID, CollateralValue, CostPerDay FROM Book WHERE Title LIKE @Title and Genre LIKE @Genre and AuthorID LIKE @AuthorID";
+                    cmd.Parameters.AddWithValue("@Title", "%" + Title + "%");
+                    cmd.Parameters.AddWithValue("@Genre", "%" + Genre + "%");
+                    cmd.Parameters.AddWithValue("@AuthorID", "%" + AuthorID);
+
+                    using (var dataReader = cmd.ExecuteReader())
+                    {
+                        while (dataReader.Read())
+                        {
+                            books.Add(LoadBook(dataReader));
+                        }
+
+                        return books;
+                    }
+                }
+            }
+        }
     }
 }

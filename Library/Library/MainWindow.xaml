@@ -27,6 +27,7 @@
                 <MenuItem Name="ExelExporterButton" Header="Экспорт таблицы Excel" />
             </MenuItem>
             <MenuItem Name = "About" Header="О программе" ></MenuItem>
+            <MenuItem Name = "Search" Header="Поиск" Click="Search_Click"></MenuItem>
         </Menu>
 
         <DataGrid x:Name="dgAuthors" HorizontalAlignment="Left" IsSynchronizedWithCurrentItem="True" IsReadOnly="True" AutoGenerateColumns="False" Width="704" Margin="0,0" Grid.Row="1" Grid.Column="1" Visibility="Hidden">

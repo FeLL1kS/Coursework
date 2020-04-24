@@ -103,6 +103,34 @@ namespace Library.DataAccess
             }
         }
 
+        public IList<Reader> SearchReaders(string FirstName, string SecondName, string Patronymic, string DicsountID)
+        {
+            IList<Reader> readers = new List<Reader>();
+
+            using (var conn = GetConnection())
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT ReaderCode, FirstName, SecondName, Patronymic, Address, PhoneNumber, DiscountCode FROM Reader WHERE FirstName LIKE @FirstName and SecondName LIKE @SecondName and Patronymic LIKE @Patronymic and DiscountCode LIKE @DiscountID";
+                    cmd.Parameters.AddWithValue("@FirstName", "%" + FirstName + "%");
+                    cmd.Parameters.AddWithValue("@SecondName", "%" + SecondName + "%");
+                    cmd.Parameters.AddWithValue("@Patronymic", "%" + Patronymic + "%");
+                    cmd.Parameters.AddWithValue("@DiscountID", "%" + DicsountID);
+
+                    using (var dataReader = cmd.ExecuteReader())
+                    {
+                        while (dataReader.Read())
+                        {
+                            readers.Add(LoadReader(dataReader));
+                        }
+
+                        return readers;
+                    }
+                }
+            }
+        }
+
         public Reader LoadReader(SqlDataReader dataReader)
         {
             Reader reader = new Reader

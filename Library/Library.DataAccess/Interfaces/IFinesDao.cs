@@ -38,5 +38,13 @@ namespace Library.DataAccess.Interfaces
         /// </summary>
         /// <param name="id">ID штрафа</param>
         void Delete(int id);
+
+        /// <summary>
+        /// Поиск по штрафам
+        /// </summary>
+        /// <param name="PriceFrom">Поиск в промежутке от</param>
+        /// <param name="PriceTo">До</param>
+        /// <returns>Список штрафов</returns>
+        IList<Fines> SearchFines(string PriceFrom, string PriceTo);
     }
 }

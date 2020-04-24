@@ -43,5 +43,10 @@ namespace Library.BusinessLayer
         {
             _finesDao.Update(DtoConverter.Convert(fines));
         }
+        
+        public IList<FinesDto> SearchFines(string PriceFrom, string PriceTo)
+        {
+            return DtoConverter.Convert(_finesDao.SearchFines(PriceFrom, PriceTo));
+        }
     }
 }

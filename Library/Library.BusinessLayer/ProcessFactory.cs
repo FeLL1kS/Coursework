@@ -38,24 +38,53 @@ namespace Library.BusinessLayer
             return new DiscountsProcessDb();
         }
 
+        /// <summary>
+        /// Возвращает объект реализующий IReaderProcess
+        /// </summary>
+        /// <returns></returns>
+
         public static IReaderProcess GetReaderProcess()
         {
             return new ReaderProcessDb();
         }
+
+        /// <summary>
+        /// Возвращает объект реализующий IFinesProcess
+        /// </summary>
+        /// <returns></returns>
 
         public static IFinesProcess GetFinesProcess()
         {
             return new FinesProcessDb();
         }
 
+        /// <summary>
+        /// Возвращает объект реализующий ICardIndexProcess
+        /// </summary>
+        /// <returns></returns>
+
         public static ICardIndexProcess GetCardIndexProcess()
         {
             return new CardIndexProcessDb();
         }
 
+        /// <summary>
+        /// Возвращает объект реализующий ISettingsProcess
+        /// </summary>
+        /// <returns></returns>
+
         public static ISettingsProcess GetSettingsProcess()
         {
             return new SettingsProcess();
+        }
+
+        /// <summary>
+        /// Возвращает объект реализующий IReportGenerator
+        /// </summary>
+        /// <returns></returns>
+        public static IReportGenerator GetReportGenerator()
+        {
+            return new ReportGenerator();
         }
     }
 }

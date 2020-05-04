@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -13,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Library.BusinessLayer;
 using Library.DTO;
+using Microsoft.Win32;
 
 namespace Library
 {
@@ -549,6 +551,55 @@ namespace Library
                         break;
                 }
             }
+        }
+
+        private void ExelExporterButton_Click(object sender, RoutedEventArgs e)
+        {
+            List<object> grid = null;
+
+            switch(status)
+            {
+                case ("Authors"):
+                    grid = dgAuthors.ItemsSource.Cast<object>().ToList();
+                    break;
+                case ("Books"):
+                    grid = dgBooks.ItemsSource.Cast<object>().ToList();
+                    break;
+                case ("Discounts"):
+                    grid = dgDiscounts.ItemsSource.Cast<object>().ToList();
+                    break;
+                case ("Fines"):
+                    grid = dgFines.ItemsSource.Cast<object>().ToList();
+                    break;
+                case ("Readers"):
+                    grid = dgReaders.ItemsSource.Cast<object>().ToList();
+                    break;
+                case ("CardIndecies"):
+                    grid = dgCardIndecies.ItemsSource.Cast<object>().ToList();
+                    break;
+            }
+
+            SaveFileDialog saveXlsxDialog = new SaveFileDialog
+            {
+                DefaultExt = ".xlsx",
+                Filter = "Excel Files (.xlsx)|*.xlsx",
+                AddExtension = true,
+                FileName = status
+            };
+
+            bool? result = saveXlsxDialog.ShowDialog();
+
+            if(result == true)
+            {
+                FileInfo xlsxFile = new FileInfo(saveXlsxDialog.FileName);
+
+                ProcessFactory.GetReportGenerator().FillExelTableByType(grid, status, xlsxFile);
+            }
+        }
+
+        private void GraphReportButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

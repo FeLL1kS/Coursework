@@ -42,5 +42,10 @@ namespace Library.DataAccess
         {
             return new SettingsDao();
         }
+
+        public static IReportItemDao GetReport()
+        {
+            return new ReportDao();
+        }
     }
 }

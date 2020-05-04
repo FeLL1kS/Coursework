@@ -599,7 +599,8 @@ namespace Library
 
         private void GraphReportButton_Click(object sender, RoutedEventArgs e)
         {
-
+            ReportWindow window = new ReportWindow();
+            window.Show();
         }
     }
 }

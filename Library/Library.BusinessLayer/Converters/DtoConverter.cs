@@ -286,5 +286,28 @@ namespace Library.BusinessLayer.Converters
 
             return cardIndexDtos;
         }
+
+        public static ReportItemDto Convert(Report report)
+        {
+            if (report == null)
+                return null;
+            ReportItemDto reportDto = new ReportItemDto()
+            {
+                Date = report.Date.ToString(),
+                Count = report.Count,
+                Price = report.Price
+            };
+            return reportDto;
+        }
+
+        internal static IList<ReportItemDto> Convert(IList<Report> reports)
+        {
+            IList<ReportItemDto> reportDtos = new List<ReportItemDto>();
+            foreach (Report report in reports)
+            {
+                reportDtos.Add(Convert(report));
+            }
+            return reportDtos;
+        }
     }
 }

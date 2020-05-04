@@ -86,5 +86,14 @@ namespace Library.BusinessLayer
         {
             return new ReportGenerator();
         }
+
+        /// <summary>
+        /// Возвращает объект реализующий IReportItemProcess
+        /// </summary>
+        /// <returns></returns>
+        public static IReportItemProcess GetReportProcess()
+        {
+            return new ReportItemProcess();
+        }
     }
 }

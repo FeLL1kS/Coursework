@@ -26,7 +26,7 @@ WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" Loaded="Window_Load
         <DatePicker Name="dpDateOfIssue" Grid.Row="0" Grid.Column="1" Margin="3"/>
         <DatePicker Name="dpReturnDate" Grid.Row="1" Grid.Column="1" Margin="3"/>
         <ComboBox Name="cbBook" Grid.Row="2" Grid.Column="2" Margin="3" ItemsSource="{Binding}" DisplayMemberPath="Title"/>
-        <ComboBox Name="cbReader" Grid.Row="3" Grid.Column="2" Margin="3" ItemsSource="{Binding}" DisplayMemberPath="SecondName"/>
+        <ComboBox Name="cbReader" Grid.Row="3" Grid.Column="2" Margin="3" ItemsSource="{Binding}" DisplayMemberPath="IdName"/>
         <ComboBox Name="cbFine" Grid.Row="4" Grid.Column="2" Margin="3" ItemsSource="{Binding}" DisplayMemberPath="FineDescription"/>
         <Button Name="btnSave" Grid.Row="5" Grid.Column="0" Content="Сохранить" Margin="3" Click="btnSave_Click" />
         <Button Name="btnCancel" Grid.Row="5" Grid.Column="1" Content="Закрыть" Margin="3" Click="btnCancel_Click" />

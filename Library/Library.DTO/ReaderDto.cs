@@ -34,6 +34,7 @@ namespace Library.DTO
         /// <summary>
         /// Ссылка на скидку
         /// </summary>
+        public string IdName { get; set; }
         public DiscountsDto Discount { get; set; }
     }
 }

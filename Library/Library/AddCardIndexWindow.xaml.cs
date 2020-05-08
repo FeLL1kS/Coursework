@@ -31,6 +31,12 @@ namespace Library
         public AddCardIndexWindow()
         {
             InitializeComponent();
+
+            foreach(ReaderDto reader in readers)
+            {
+                reader.IdName = $"{reader.Id} {reader.SecondName}";
+            }
+
             cbBook.ItemsSource = (from B in books orderby B.Title select B);
             cbFine.ItemsSource = (from F in fines orderby F.FinePrice select F);
             cbReader.ItemsSource = (from R in readers orderby R.SecondName select R);

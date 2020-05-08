@@ -214,7 +214,7 @@ namespace Library
                 return;
             }
 
-            FindedCardIndecies = ProcessFactory.GetCardIndexProcess().SearchCardIndices(dpReturnDateFrom.Text, dpReturnDateTo.Text, dpDateOfIssueFrom.Text, dpDateOfIssueTo.Text, tbTotalPrice.Text, ReaderID, BookID, FineID);
+            FindedCardIndecies = ProcessFactory.GetCardIndexProcess().SearchCardIndices(dpReturnDateFrom.Text, dpReturnDateTo.Text, dpDateOfIssueFrom.Text, dpDateOfIssueTo.Text, tbTotalPriceFrom.Text, tbTotalPriceTo.Text, ReaderID, BookID, FineID);
             exec = true;
             Close();
         }

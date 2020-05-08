@@ -97,7 +97,7 @@ namespace Library
                 return;
             }
 
-            MessageBoxResult result = MessageBox.Show("Удалить читателя" + reader.SecondName + "?", "Удаление книги", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            MessageBoxResult result = MessageBox.Show("Удалить читателя " + reader.FirstName + " " + reader.SecondName + "?", "Удаление книги", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
             if (result == MessageBoxResult.No)
                 return;

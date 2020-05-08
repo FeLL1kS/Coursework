@@ -5,6 +5,7 @@ using System.Text;
 using Library.DataAccess.Interfaces;
 using Library.DataAccess.Entities;
 using System.Data.SqlClient;
+using System.Windows;
 
 namespace Library.DataAccess
 {
@@ -38,7 +39,14 @@ namespace Library.DataAccess
                 {
                     cmd.CommandText = "DELETE FROM Reader WHERE ReaderCode = @ReaderCode";
                     cmd.Parameters.AddWithValue("@ReaderCode", id);
-                    cmd.ExecuteNonQuery();
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Невозможно удалить читетеля, так как имеются записи в картотеке", "Ошибка");
+                    }
                 }
             }
         }

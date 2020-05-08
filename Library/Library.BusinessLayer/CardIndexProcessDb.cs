@@ -39,9 +39,9 @@ namespace Library.BusinessLayer
             return DtoConverter.Convert(_cardIndexDao.GetList());
         }
 
-        public IList<CardIndexDto> SearchCardIndices(string ReturnDateFrom, string ReturnDateTo, string DateOfIssueFrom, string DateOfIssueTo, string TotalPrice, string ReaderCode, string BookCode, string FineCode)
+        public IList<CardIndexDto> SearchCardIndices(string ReturnDateFrom, string ReturnDateTo, string DateOfIssueFrom, string DateOfIssueTo, string TotalPriceFrom, string TotalPriceTo, string ReaderCode, string BookCode, string FineCode)
         {
-            return DtoConverter.Convert(_cardIndexDao.SearchCardIndices(ReturnDateFrom, ReturnDateTo, DateOfIssueFrom, DateOfIssueTo, TotalPrice, ReaderCode, BookCode, FineCode));
+            return DtoConverter.Convert(_cardIndexDao.SearchCardIndices(ReturnDateFrom, ReturnDateTo, DateOfIssueFrom, DateOfIssueTo, TotalPriceFrom, TotalPriceTo, ReaderCode, BookCode, FineCode));
         }
 
         public void Update(CardIndexDto cardIndex)

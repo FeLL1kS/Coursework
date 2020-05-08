@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Windows;
 
 namespace Library.DataAccess
 {
@@ -33,7 +34,14 @@ namespace Library.DataAccess
                 {
                     cmd.CommandText = "DELETE FROM Author WHERE AuthorID = @ID";
                     cmd.Parameters.AddWithValue("@ID", id);
-                    cmd.ExecuteNonQuery();
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Невозможно удалить автора, так как он используется", "Ошибка");
+                    }
                 }
             }
         }

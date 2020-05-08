@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
+using System.Windows;
 
 namespace Library.DataAccess
 {
@@ -37,7 +38,14 @@ namespace Library.DataAccess
                 {
                     cmd.CommandText = "DELETE FROM Book WHERE BookCode = @BookCode";
                     cmd.Parameters.AddWithValue("@BookCode", id);
-                    cmd.ExecuteNonQuery();
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Невозможно удалить книгу, так как она используется", "Ошибка");
+                    }
                 }
             }
         }

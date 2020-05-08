@@ -115,7 +115,7 @@ namespace Library.DataAccess
             }
         }
         
-        public IList<CardIndex> SearchCardIndices(string ReturnDateFrom, string ReturnDateTo, string DateOfIssueFrom, string DateOfIssueTo, string TotalPrice, string ReaderCode, string BookCode, string FineCode)
+        public IList<CardIndex> SearchCardIndices(string ReturnDateFrom, string ReturnDateTo, string DateOfIssueFrom, string DateOfIssueTo, string TotalPriceFrom, string TotalPriceTo, string ReaderCode, string BookCode, string FineCode)
         {
             IList<CardIndex> cardIndices = new List<CardIndex>();
 
@@ -128,7 +128,7 @@ namespace Library.DataAccess
                     {
                         if(DateOfIssueTo != "" && ReturnDateTo != "")
                         {
-                            cmd.CommandText = "SELECT IssuedBookID, DateOfIssue, ReturnDate, TotalPrice, BookCode, FineCode, ReaderCode FROM CardIndex WHERE TotalPrice LIKE @TotalPrice and BookCode LIKE @BookCode and FineCode LIKE @FineCode and ReaderCode LIKE @ReaderCode and DateOfIssue > @DateOfIssueFrom and DateOfIssue < @DateOfIssueTo and ReturnDate > @ReturnDateFrom and ReturnDate < @ReturnDateTo";
+                            cmd.CommandText = "SELECT IssuedBookID, DateOfIssue, ReturnDate, TotalPrice, BookCode, FineCode, ReaderCode FROM CardIndex WHERE  BookCode LIKE @BookCode and FineCode LIKE @FineCode and ReaderCode LIKE @ReaderCode and DateOfIssue > @DateOfIssueFrom and DateOfIssue < @DateOfIssueTo and ReturnDate > @ReturnDateFrom and ReturnDate < @ReturnDateTo";
                             cmd.Parameters.AddWithValue("@DateOfIssueFrom", DateOfIssueFrom);
                             cmd.Parameters.AddWithValue("@DateOfIssueTo", DateOfIssueTo);
                             cmd.Parameters.AddWithValue("@ReturnDateFrom", ReturnDateFrom);
@@ -136,21 +136,21 @@ namespace Library.DataAccess
                         }
                         else if(DateOfIssueTo != "")
                         {
-                            cmd.CommandText = "SELECT IssuedBookID, DateOfIssue, ReturnDate, TotalPrice, BookCode, FineCode, ReaderCode FROM CardIndex WHERE TotalPrice LIKE @TotalPrice and BookCode LIKE @BookCode and FineCode LIKE @FineCode and ReaderCode LIKE @ReaderCode and DateOfIssue > @DateOfIssueFrom and DateOfIssue < @DateOfIssueTo and ReturnDate > @ReturnDateFrom";
+                            cmd.CommandText = "SELECT IssuedBookID, DateOfIssue, ReturnDate, TotalPrice, BookCode, FineCode, ReaderCode FROM CardIndex WHERE  BookCode LIKE @BookCode and FineCode LIKE @FineCode and ReaderCode LIKE @ReaderCode and DateOfIssue > @DateOfIssueFrom and DateOfIssue < @DateOfIssueTo and ReturnDate > @ReturnDateFrom";
                             cmd.Parameters.AddWithValue("@DateOfIssueFrom", DateOfIssueFrom);
                             cmd.Parameters.AddWithValue("@DateOfIssueTo", DateOfIssueTo);
                             cmd.Parameters.AddWithValue("@ReturnDateFrom", ReturnDateFrom);
                         }
                         else if(ReturnDateTo != "")
                         {
-                            cmd.CommandText = "SELECT IssuedBookID, DateOfIssue, ReturnDate, TotalPrice, BookCode, FineCode, ReaderCode FROM CardIndex WHERE TotalPrice LIKE @TotalPrice and BookCode LIKE @BookCode and FineCode LIKE @FineCode and ReaderCode LIKE @ReaderCode and DateOfIssue > @DateOfIssueFrom and ReturnDate > @ReturnDateFrom and ReturnDate < @ReturnDateTo";
+                            cmd.CommandText = "SELECT IssuedBookID, DateOfIssue, ReturnDate, TotalPrice, BookCode, FineCode, ReaderCode FROM CardIndex WHERE  BookCode LIKE @BookCode and FineCode LIKE @FineCode and ReaderCode LIKE @ReaderCode and DateOfIssue > @DateOfIssueFrom and ReturnDate > @ReturnDateFrom and ReturnDate < @ReturnDateTo";
                             cmd.Parameters.AddWithValue("@DateOfIssueFrom", DateOfIssueFrom);
                             cmd.Parameters.AddWithValue("@ReturnDateFrom", ReturnDateFrom);
                             cmd.Parameters.AddWithValue("@ReturnDateTo", ReturnDateTo);
                         }
                         else
                         {
-                            cmd.CommandText = "SELECT IssuedBookID, DateOfIssue, ReturnDate, TotalPrice, BookCode, FineCode, ReaderCode FROM CardIndex WHERE TotalPrice LIKE @TotalPrice and BookCode LIKE @BookCode and FineCode LIKE @FineCode and ReaderCode LIKE @ReaderCode and DateOfIssue > @DateOfIssueFrom and ReturnDate > @ReturnDateFrom";
+                            cmd.CommandText = "SELECT IssuedBookID, DateOfIssue, ReturnDate, TotalPrice, BookCode, FineCode, ReaderCode FROM CardIndex WHERE  BookCode LIKE @BookCode and FineCode LIKE @FineCode and ReaderCode LIKE @ReaderCode and DateOfIssue > @DateOfIssueFrom and ReturnDate > @ReturnDateFrom";
                             cmd.Parameters.AddWithValue("@DateOfIssueFrom", DateOfIssueFrom);
                             cmd.Parameters.AddWithValue("@ReturnDateFrom", ReturnDateFrom);
                         }
@@ -159,13 +159,13 @@ namespace Library.DataAccess
                     {
                         if(DateOfIssueTo != "")
                         {
-                            cmd.CommandText = "SELECT IssuedBookID, DateOfIssue, ReturnDate, TotalPrice, BookCode, FineCode, ReaderCode FROM CardIndex WHERE TotalPrice LIKE @TotalPrice and BookCode LIKE @BookCode and FineCode LIKE @FineCode and ReaderCode LIKE @ReaderCode and DateOfIssue > @DateOfIssueFrom and DateOfIssue < @DateOfIssueTo";
+                            cmd.CommandText = "SELECT IssuedBookID, DateOfIssue, ReturnDate, TotalPrice, BookCode, FineCode, ReaderCode FROM CardIndex WHERE  BookCode LIKE @BookCode and FineCode LIKE @FineCode and ReaderCode LIKE @ReaderCode and DateOfIssue > @DateOfIssueFrom and DateOfIssue < @DateOfIssueTo";
                             cmd.Parameters.AddWithValue("@DateOfIssueFrom", DateOfIssueFrom);
                             cmd.Parameters.AddWithValue("@DateOfIssueTo", DateOfIssueTo);
                         }
                         else
                         {
-                            cmd.CommandText = "SELECT IssuedBookID, DateOfIssue, ReturnDate, TotalPrice, BookCode, FineCode, ReaderCode FROM CardIndex WHERE TotalPrice LIKE @TotalPrice and BookCode LIKE @BookCode and FineCode LIKE @FineCode and ReaderCode LIKE @ReaderCode and DateOfIssue > @DateOfIssueFrom";
+                            cmd.CommandText = "SELECT IssuedBookID, DateOfIssue, ReturnDate, TotalPrice, BookCode, FineCode, ReaderCode FROM CardIndex WHERE  BookCode LIKE @BookCode and FineCode LIKE @FineCode and ReaderCode LIKE @ReaderCode and DateOfIssue > @DateOfIssueFrom";
                             cmd.Parameters.AddWithValue("@DateOfIssueFrom", DateOfIssueFrom);
                         }
                     }
@@ -173,22 +173,38 @@ namespace Library.DataAccess
                     {
                         if(ReturnDateTo != "")
                         {
-                            cmd.CommandText = "SELECT IssuedBookID, DateOfIssue, ReturnDate, TotalPrice, BookCode, FineCode, ReaderCode FROM CardIndex WHERE TotalPrice LIKE @TotalPrice and BookCode LIKE @BookCode and FineCode LIKE @FineCode and ReaderCode LIKE @ReaderCode and ReturnDate > @ReturnDateFrom and ReturnDate < @ReturnDateTo";
+                            cmd.CommandText = "SELECT IssuedBookID, DateOfIssue, ReturnDate, TotalPrice, BookCode, FineCode, ReaderCode FROM CardIndex WHERE  BookCode LIKE @BookCode and FineCode LIKE @FineCode and ReaderCode LIKE @ReaderCode and ReturnDate > @ReturnDateFrom and ReturnDate < @ReturnDateTo";
                             cmd.Parameters.AddWithValue("@ReturnDateFrom", ReturnDateFrom);
                             cmd.Parameters.AddWithValue("@ReturnDateTo", ReturnDateTo);
                         }
                         else
                         {
-                            cmd.CommandText = "SELECT IssuedBookID, DateOfIssue, ReturnDate, TotalPrice, BookCode, FineCode, ReaderCode FROM CardIndex WHERE TotalPrice LIKE @TotalPrice and BookCode LIKE @BookCode and FineCode LIKE @FineCode and ReaderCode LIKE @ReaderCode and ReturnDate > @ReturnDateFrom";
+                            cmd.CommandText = "SELECT IssuedBookID, DateOfIssue, ReturnDate, TotalPrice, BookCode, FineCode, ReaderCode FROM CardIndex WHERE  BookCode LIKE @BookCode and FineCode LIKE @FineCode and ReaderCode LIKE @ReaderCode and ReturnDate > @ReturnDateFrom";
                             cmd.Parameters.AddWithValue("@ReturnDateFrom", ReturnDateFrom);
                         }
                     }
                     else
                     {
-                        cmd.CommandText = "SELECT IssuedBookID, DateOfIssue, ReturnDate, TotalPrice, BookCode, FineCode, ReaderCode FROM CardIndex WHERE TotalPrice LIKE @TotalPrice and BookCode LIKE @BookCode and FineCode LIKE @FineCode and ReaderCode LIKE @ReaderCode";
+                        cmd.CommandText = "SELECT IssuedBookID, DateOfIssue, ReturnDate, TotalPrice, BookCode, FineCode, ReaderCode FROM CardIndex WHERE  BookCode LIKE @BookCode and FineCode LIKE @FineCode and ReaderCode LIKE @ReaderCode";
                     }
 
-                    cmd.Parameters.AddWithValue("@TotalPrice", "%" + TotalPrice + "%");
+                    if(TotalPriceFrom != "" && TotalPriceTo != "")
+                    {
+                        cmd.CommandText += " and TotalPrice > @TotalPriceFrom and TotalPrice < @TotalPriceTo";
+                        cmd.Parameters.AddWithValue("@TotalPriceFrom", TotalPriceFrom);
+                        cmd.Parameters.AddWithValue("@TotalPriceTo", TotalPriceTo);
+                    }
+                    else if(TotalPriceFrom != "" && TotalPriceTo == "")
+                    {
+                        cmd.CommandText += " and TotalPrice > @TotalPriceFrom";
+                        cmd.Parameters.AddWithValue("@TotalPriceFrom", TotalPriceFrom);
+                    }
+                    else if(TotalPriceFrom == "" && TotalPriceTo != "")
+                    {
+                        cmd.CommandText += " and TotalPrice < @TotalPriceTo";
+                        cmd.Parameters.AddWithValue("@TotalPriceTo", TotalPriceTo);
+                    }
+
                     cmd.Parameters.AddWithValue("@BookCode", "%" + BookCode);
                     cmd.Parameters.AddWithValue("@FineCode", "%" + FineCode);
                     cmd.Parameters.AddWithValue("@ReaderCode", "%" + ReaderCode);

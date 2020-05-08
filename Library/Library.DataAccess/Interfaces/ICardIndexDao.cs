@@ -51,6 +51,6 @@ namespace Library.DataAccess.Interfaces
         /// <param name="BookCode">Книга</param>
         /// <param name="FineCode">Штраф</param>
         /// <returns>Список читателей</returns>
-        IList<CardIndex> SearchCardIndices(string ReturnDateFrom, string ReturnDateTo, string DateOfIssueFrom, string DateOfIssueTo, string TotalPrice, string ReaderCode, string BookCode, string FineCode);
+        IList<CardIndex> SearchCardIndices(string ReturnDateFrom, string ReturnDateTo, string DateOfIssueFrom, string DateOfIssueTo, string TotalPriceFrom, string TotalPriceTo, string ReaderCode, string BookCode, string FineCode);
     }
 }

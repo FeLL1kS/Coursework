@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
+using System.Windows;
 
 namespace Library.DataAccess
 {
@@ -34,7 +35,14 @@ namespace Library.DataAccess
                 {
                     cmd.CommandText = "DELETE FROM Discounts WHERE DiscountCode = @ID";
                     cmd.Parameters.AddWithValue("@ID", id);
-                    cmd.ExecuteNonQuery();
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Невозможно удалить скидку, так как она используется", "Ошибка");
+                    }
                 }
             }
         }

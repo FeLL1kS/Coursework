@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Library"
         mc:Ignorable="d" ResizeMode="NoResize" SizeToContent="WidthAndHeight"
-        Title="SearchWindow">
+        Title="Поиск">
     <Grid>
         <TabControl x:Name="SearchTab" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0">
             <TabItem x:Name="sAuthor" Header="Поиск Авторов">
@@ -124,6 +124,7 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
@@ -133,20 +134,22 @@
                     <TextBlock Grid.Row="0" Grid.Column="0" Margin="3" Text="Книга"/>
                     <TextBlock Grid.Row="1" Grid.Column="0" Margin="3" Text="Штраф"/>
                     <TextBlock Grid.Row="2" Grid.Column="0" Margin="3" Text="Читатель"/>
-                    <TextBlock Grid.Row="3" Grid.Column="0" Margin="3" Text="Цена"/>
-                    <TextBlock Grid.Row="4" Grid.Column="0" Margin="3" Text="Дата выдачи от"/>
-                    <TextBlock Grid.Row="5" Grid.Column="0" Margin="3" Text="Дата выдачи до" />
-                    <TextBlock Grid.Row="6" Grid.Column="0" Margin="3" Text="Дата возврата от"/>
-                    <TextBlock Grid.Row="7" Grid.Column="0" Margin="3" Text="Дата возврата до"/>
+                    <TextBlock Grid.Row="3" Grid.Column="0" Margin="3" Text="Цена от"/>
+                    <TextBlock Grid.Row="4" Grid.Column="0" Margin="3" Text="Цена до"/>
+                    <TextBlock Grid.Row="5" Grid.Column="0" Margin="3" Text="Дата выдачи от"/>
+                    <TextBlock Grid.Row="6" Grid.Column="0" Margin="3" Text="Дата выдачи до" />
+                    <TextBlock Grid.Row="7" Grid.Column="0" Margin="3" Text="Дата возврата от"/>
+                    <TextBlock Grid.Row="8" Grid.Column="0" Margin="3" Text="Дата возврата до"/>
                     <ComboBox Name="cbAllowBooks" Grid.Row="0" Grid.Column="1" Margin="3" Width="200" HorizontalAlignment="Left" ItemsSource="{Binding}" DisplayMemberPath="Title"/>
                     <ComboBox Name="cbAllowFines" Grid.Row="1" Grid.Column="1" Margin="3" Width="200" HorizontalAlignment="Left" ItemsSource="{Binding}" DisplayMemberPath="FinePrice"/>
                     <ComboBox Name="cbAllowReaders" Grid.Row="2" Grid.Column="1" Margin="3" Width="200" HorizontalAlignment="Left" ItemsSource="{Binding}" DisplayMemberPath="SecondName"/>
-                    <TextBox Name="tbTotalPrice" Grid.Row="3" Grid.Column="1" Margin="3" Width="200" HorizontalAlignment="Left"/>
-                    <DatePicker Name="dpDateOfIssueFrom" Grid.Row="4" Grid.Column="1" Margin="3" Width="200" HorizontalAlignment="Left" />
-                    <DatePicker Name="dpDateOfIssueTo" Grid.Row="5" Grid.Column="1" Margin="3" Width="200" HorizontalAlignment="Left"/>
-                    <DatePicker Name="dpReturnDateFrom" Grid.Row="6" Grid.Column="1" Margin="3" Width="200" HorizontalAlignment="Left"/>
-                    <DatePicker Name="dpReturnDateTo" Grid.Row="7" Grid.Column="1" Margin="3" Width="200" HorizontalAlignment="Left"/>
-                    <StackPanel Grid.Row="8" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBox Name="tbTotalPriceFrom" Grid.Row="3" Grid.Column="1" Margin="3" Width="200" HorizontalAlignment="Left"/>
+                    <TextBox Name="tbTotalPriceTo" Grid.Row="4" Grid.Column="1" Margin="3" Width="200" HorizontalAlignment="Left"/>
+                    <DatePicker Name="dpDateOfIssueFrom" Grid.Row="5" Grid.Column="1" Margin="3" Width="200" HorizontalAlignment="Left" />
+                    <DatePicker Name="dpDateOfIssueTo" Grid.Row="6" Grid.Column="1" Margin="3" Width="200" HorizontalAlignment="Left"/>
+                    <DatePicker Name="dpReturnDateFrom" Grid.Row="7" Grid.Column="1" Margin="3" Width="200" HorizontalAlignment="Left"/>
+                    <DatePicker Name="dpReturnDateTo" Grid.Row="8" Grid.Column="1" Margin="3" Width="200" HorizontalAlignment="Left"/>
+                    <StackPanel Grid.Row="9" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
                         <Button x:Name="btnSearchCardIndex" Content="Принять" Margin="3" Width="70" Click="SearchCardIndex"/>
                         <Button x:Name="btnCancelC"  Content="Отмена" Margin="3" Width="70" Click="CloseForm"/>
                     </StackPanel>

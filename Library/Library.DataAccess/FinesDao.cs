@@ -5,6 +5,7 @@ using System.Text;
 using Library.DataAccess.Interfaces;
 using Library.DataAccess.Entities;
 using System.Data.SqlClient;
+using System.Windows;
 
 namespace Library.DataAccess
 {
@@ -34,7 +35,14 @@ namespace Library.DataAccess
                 {
                     cmd.CommandText = "DELETE FROM Fines WHERE FineCode = @FineCode";
                     cmd.Parameters.AddWithValue("@FineCode", id);
-                    cmd.ExecuteNonQuery();
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Невозможно удалить штраф, так как он используется", "Ошибка");
+                    }
                 }
             }
         }

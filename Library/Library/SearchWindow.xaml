@@ -58,7 +58,7 @@
                     </StackPanel>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="sFine" Header="Поиск Книг">
+            <TabItem x:Name="sFine" Header="Поиск Штрафов">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
@@ -83,7 +83,7 @@
                     </StackPanel>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="sReader" Header="Поиск Книг">
+            <TabItem x:Name="sReader" Header="Поиск Читателей">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
@@ -112,7 +112,7 @@
                     </StackPanel>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="sCardIndex" Header="Поиск Книг">
+            <TabItem x:Name="sCardIndex" Header="Поиск по картотеке">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>

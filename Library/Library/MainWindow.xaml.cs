@@ -196,9 +196,6 @@ namespace Library
                 case ("Readers"):
                     this.btnAddR_Click();
                     break;
-                case ("CardIndecies"):
-                    this.btnAddC_Click();
-                    break;
             }
 
             if (status == null)
@@ -208,12 +205,6 @@ namespace Library
             }
 
             btnRefresh_Click(sender, e);
-        }
-
-        private void btnAddC_Click()
-        {
-            AddCardIndexWindow window = new AddCardIndexWindow();
-            window.ShowDialog();
         }
 
         private void btnAddR_Click()
@@ -442,6 +433,9 @@ namespace Library
                     dgReaders.Visibility = Visibility.Hidden;
                     dgDiscounts.Visibility = Visibility.Visible;
                     Search.Visibility = Visibility.Collapsed;
+                    btnAdd.Visibility = Visibility.Visible;
+                    btnIssueBook.Visibility = Visibility.Collapsed;
+                    btnReturnBook.Visibility = Visibility.Collapsed;
                     statusLabel.Content = "Работа с таблицей: Скидки";
                     status = "Discounts";
                     break;
@@ -453,6 +447,9 @@ namespace Library
                     dgCardIndecies.Visibility = Visibility.Hidden;
                     dgReaders.Visibility = Visibility.Hidden;
                     Search.Visibility = Visibility.Visible;
+                    btnAdd.Visibility = Visibility.Visible;
+                    btnIssueBook.Visibility = Visibility.Collapsed;
+                    btnReturnBook.Visibility = Visibility.Collapsed;
                     statusLabel.Content = "Работа с таблицей: Книги";
                     status = "Books";
                     break;
@@ -464,6 +461,9 @@ namespace Library
                     dgCardIndecies.Visibility = Visibility.Hidden;
                     dgReaders.Visibility = Visibility.Hidden;
                     Search.Visibility = Visibility.Visible;
+                    btnAdd.Visibility = Visibility.Visible;
+                    btnIssueBook.Visibility = Visibility.Collapsed;
+                    btnReturnBook.Visibility = Visibility.Collapsed;
                     statusLabel.Content = "Работа с таблицей: Авторы";
                     status = "Authors";
                     break;
@@ -475,6 +475,9 @@ namespace Library
                     dgCardIndecies.Visibility = Visibility.Hidden;
                     dgReaders.Visibility = Visibility.Visible;
                     Search.Visibility = Visibility.Visible;
+                    btnAdd.Visibility = Visibility.Visible;
+                    btnIssueBook.Visibility = Visibility.Collapsed;
+                    btnReturnBook.Visibility = Visibility.Collapsed;
                     statusLabel.Content = "Работа с таблицей: Читатели";
                     status = "Readers";
                     break;
@@ -486,6 +489,9 @@ namespace Library
                     dgReaders.Visibility = Visibility.Hidden;
                     dgFines.Visibility = Visibility.Visible;
                     Search.Visibility = Visibility.Visible;
+                    btnAdd.Visibility = Visibility.Visible;
+                    btnIssueBook.Visibility = Visibility.Collapsed;
+                    btnReturnBook.Visibility = Visibility.Collapsed;
                     statusLabel.Content = "Работа с таблицей: Штрафы";
                     status = "Fines";
                     break;
@@ -497,6 +503,9 @@ namespace Library
                     dgReaders.Visibility = Visibility.Hidden;
                     dgCardIndecies.Visibility = Visibility.Visible;
                     Search.Visibility = Visibility.Visible;
+                    btnAdd.Visibility = Visibility.Collapsed;
+                    btnIssueBook.Visibility = Visibility.Visible;
+                    btnReturnBook.Visibility = Visibility.Visible;
                     statusLabel.Content = "Работа с таблицей: Картотека";
                     status = "CardIndecies";
                     break;
@@ -601,6 +610,35 @@ namespace Library
         {
             ReportWindow window = new ReportWindow();
             window.Show();
+        }
+
+        private void btnReturnBook_Click(object sender, RoutedEventArgs e)
+        {
+            CardIndexDto cardIndex = dgCardIndecies.SelectedItem as CardIndexDto;
+
+            if (cardIndex == null)
+            {
+                MessageBox.Show("Выберите запись", "Возврат книги");
+                return;
+            }
+
+            AddCardIndexWindow window = new AddCardIndexWindow { status = "return" };
+            if(window.Load(cardIndex))
+            {
+                window.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Выберите корректную запись для оформления возврата книги", "Возврат книги");
+            }
+            btnRefresh_Click(sender, e);
+        }
+
+        private void btnIssueBook_Click(object sender, RoutedEventArgs e)
+        {   
+            AddCardIndexWindow window = new AddCardIndexWindow { status = "issue" };
+            window.ShowDialog();
+            btnRefresh_Click(sender, e);
         }
     }
 }

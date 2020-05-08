@@ -9,10 +9,10 @@ namespace Library.DataAccess.Entities
     {
         public int IssuedBookID;
         public DateTime DateOfIssue;
-        public DateTime ReturnDate;
-        public double TotalPrice;
+        public DateTime? ReturnDate;
+        public double? TotalPrice;
         public int BookCode;
-        public int FineCode;
+        public int? FineCode;
         public int ReaderCode;
     }
 }

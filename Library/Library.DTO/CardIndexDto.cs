@@ -18,11 +18,11 @@ namespace Library.DTO
         /// <summary>
         /// Дата возврата
         /// </summary>
-        public DateTime ReturnDate { get; set; }
+        public DateTime? ReturnDate { get; set; }
         /// <summary>
         /// Полная цена
         /// </summary>
-        public double TotalPrice { get; set; }
+        public double? TotalPrice { get; set; }
         /// <summary>
         /// Ссылка на книгу
         /// </summary>

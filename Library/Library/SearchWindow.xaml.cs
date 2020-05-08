@@ -44,13 +44,15 @@ namespace Library
                     sBook.Visibility = Visibility.Collapsed;
                     sFine.Visibility = Visibility.Collapsed;
                     sReader.Visibility = Visibility.Collapsed;
+                    sCardIndex.Visibility = Visibility.Collapsed;
                     break;
                 case "Books":
                     SearchTab.SelectedIndex = 1;
                     sAuthor.Visibility = Visibility.Collapsed;
                     sFine.Visibility = Visibility.Collapsed;
                     sReader.Visibility = Visibility.Collapsed;
-                    
+                    sCardIndex.Visibility = Visibility.Collapsed;
+
                     AllowAuthors = ProcessFactory.GetAuthorProcess().GetList();
                     cbAllowAuthors.ItemsSource = AllowAuthors;
                     break;
@@ -59,12 +61,14 @@ namespace Library
                     sAuthor.Visibility = Visibility.Collapsed;
                     sBook.Visibility = Visibility.Collapsed;
                     sReader.Visibility = Visibility.Collapsed;
+                    sCardIndex.Visibility = Visibility.Collapsed;
                     break;
                 case "Readers":
                     SearchTab.SelectedIndex = 3;
                     sAuthor.Visibility = Visibility.Collapsed;
                     sBook.Visibility = Visibility.Collapsed;
                     sFine.Visibility = Visibility.Collapsed;
+                    sCardIndex.Visibility = Visibility.Collapsed;
                     
                     AllowDiscounts = ProcessFactory.GetDiscountProcess().GetList();
                     cbAllowsDiscount.ItemsSource = AllowDiscounts;

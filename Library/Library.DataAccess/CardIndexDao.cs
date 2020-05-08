@@ -19,9 +19,23 @@ namespace Library.DataAccess
                 {
                     cmd.CommandText = "INSERT INTO CardIndex(DateOfIssue, ReturnDate, BookCode, ReaderCode, FineCode) VALUES (@DateOfIssue, @ReturnDate, @BookCode, @ReaderCode, @FineCode)";
                     cmd.Parameters.AddWithValue("@DateOfIssue", cardIndex.DateOfIssue);
-                    cmd.Parameters.AddWithValue("@ReturnDate", cardIndex.ReturnDate);
+                    if(cardIndex.ReturnDate != null)
+                    {
+                        cmd.Parameters.AddWithValue("@ReturnDate", cardIndex.ReturnDate);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@ReturnDate", DBNull.Value);
+                    }
                     cmd.Parameters.AddWithValue("@BookCode", cardIndex.BookCode);
-                    cmd.Parameters.AddWithValue("@FineCode", cardIndex.FineCode);
+                    if (cardIndex.FineCode != null)
+                    {
+                        cmd.Parameters.AddWithValue("@FineCode", cardIndex.FineCode);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@FineCode", DBNull.Value);
+                    }
                     cmd.Parameters.AddWithValue("@ReaderCode", cardIndex.ReaderCode);
                     cmd.ExecuteNonQuery();
                 }
@@ -197,12 +211,26 @@ namespace Library.DataAccess
             {
                 IssuedBookID = dataReader.GetInt32(dataReader.GetOrdinal("IssuedBookID")),
                 DateOfIssue = dataReader.GetSqlDateTime(dataReader.GetOrdinal("DateOfIssue")).Value,
-                ReturnDate = dataReader.GetSqlDateTime(dataReader.GetOrdinal("ReturnDate")).Value,
-                TotalPrice = (double)dataReader.GetSqlMoney(dataReader.GetOrdinal("TotalPrice")).Value,
                 BookCode = dataReader.GetInt32(dataReader.GetOrdinal("BookCode")),
-                FineCode = dataReader.GetInt32(dataReader.GetOrdinal("FineCode")),
                 ReaderCode = dataReader.GetInt32(dataReader.GetOrdinal("ReaderCode"))
             };
+
+            object ReturnDate = dataReader["ReturnDate"];
+            if(ReturnDate != DBNull.Value)
+            {
+                cardIndex.ReturnDate = dataReader.GetSqlDateTime(dataReader.GetOrdinal("ReturnDate")).Value;
+            }
+            object FineCode = dataReader["FineCode"];
+            if (FineCode != DBNull.Value)
+            {
+                cardIndex.FineCode = dataReader.GetInt32(dataReader.GetOrdinal("FineCode"));
+            }
+            object TotalPrice = dataReader["TotalPrice"];
+            if (TotalPrice != DBNull.Value)
+            {
+                cardIndex.TotalPrice = (double)dataReader.GetSqlMoney(dataReader.GetOrdinal("TotalPrice")).Value;
+            }
+
 
             return cardIndex;
         }

@@ -21,6 +21,8 @@ namespace Library
     public partial class AddCardIndexWindow : Window
     {
         private int _id;
+        public string status;
+
 
         private readonly IList<BookDto> books = ProcessFactory.GetBookProcess().GetList();
         private readonly IList<ReaderDto> readers = ProcessFactory.GetReaderProcess().GetList();
@@ -34,10 +36,15 @@ namespace Library
             cbReader.ItemsSource = (from R in readers orderby R.SecondName select R);
         }
 
-        public void Load(CardIndexDto cardIndex)
+        public bool Load(CardIndexDto cardIndex)
         {
+            if (status == "return" && cardIndex.TotalPrice != null)
+            {
+                return false;
+            }
+
             if (cardIndex == null)
-                return;
+                return false;
 
             _id = cardIndex.Id;
             dpDateOfIssue.SelectedDate = cardIndex.DateOfIssue;
@@ -61,34 +68,55 @@ namespace Library
                 }
             }
 
-            foreach (FinesDto fine in fines)
+            if(cardIndex.Fine != null)
             {
-                if (fine.Id == cardIndex.Fine.Id)
+                foreach (FinesDto fine in fines)
                 {
-                    cbFine.SelectedItem = fine;
-                    break;
+                    if (fine.Id == cardIndex.Fine.Id)
+                    {
+                        cbFine.SelectedItem = fine;
+                        break;
+                    }
                 }
             }
+
+            return true;
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (dpDateOfIssue.SelectedDate == null || dpReturnDate.SelectedDate == null || cbBook.SelectedItem == null || cbFine.SelectedItem == null || cbReader == null)
-            {
-                MessageBox.Show("Заполните все поля!", "Проверка");
-                return;
-            }
+            //if (dpDateOfIssue.SelectedDate == null || dpReturnDate.SelectedDate == null || cbBook.SelectedItem == null || cbFine.SelectedItem == null || cbReader == null)
+            //{
+            //    MessageBox.Show("Заполните все поля!", "Проверка");
+            //    return;
+            //}
 
             CardIndexDto cardIndex = new CardIndexDto
             {
                 DateOfIssue = (DateTime)dpDateOfIssue.SelectedDate,
-                ReturnDate = (DateTime)dpReturnDate.SelectedDate,
                 Book = cbBook.SelectedItem as BookDto,
-                Fine = cbFine.SelectedItem as FinesDto,
                 Reader = cbReader.SelectedItem as ReaderDto
             };
 
-            if(_id == 0)
+            if(dpReturnDate.Text == "")
+            {
+                cardIndex.ReturnDate = null;
+            }
+            else
+            {
+                cardIndex.ReturnDate = (DateTime)dpReturnDate.SelectedDate;
+            }
+
+            if (cbFine.Text == "")
+            {
+                cardIndex.Fine = null;
+            }
+            else
+            {
+                cardIndex.Fine = cbFine.SelectedItem as FinesDto;
+            }
+
+            if (_id == 0)
             {
                 ProcessFactory.GetCardIndexProcess().Add(cardIndex);
             }
@@ -103,6 +131,21 @@ namespace Library
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            if(status == "issue")
+            {
+                dpReturnDate.IsEnabled = false;
+                cbFine.IsEnabled = false;
+            }
+            if(status == "return")
+            {
+                dpDateOfIssue.IsEnabled = false;
+                cbBook.IsEnabled = false;
+                cbReader.IsEnabled = false;
+            }
         }
     }
 }

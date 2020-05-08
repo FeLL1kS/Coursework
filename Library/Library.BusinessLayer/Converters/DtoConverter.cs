@@ -243,13 +243,22 @@ namespace Library.BusinessLayer.Converters
             {
                 Id = cardIndex.IssuedBookID,
                 DateOfIssue = cardIndex.DateOfIssue,
-                ReturnDate = cardIndex.ReturnDate,
-                TotalPrice = cardIndex.TotalPrice,
                 Book = ProcessFactory.GetBookProcess().Get(cardIndex.BookCode),
-                Fine = ProcessFactory.GetFinesProcess().Get(cardIndex.FineCode),
                 Reader = ProcessFactory.GetReaderProcess().Get(cardIndex.ReaderCode)
             };
-            
+            if (cardIndex.ReturnDate != null)
+            {
+                cardIndexDto.ReturnDate = cardIndex.ReturnDate;
+            }
+            if (cardIndex.FineCode != null)
+            {
+                cardIndexDto.Fine = ProcessFactory.GetFinesProcess().Get((int)cardIndex.FineCode);
+            }
+            if (cardIndex.TotalPrice != null)
+            {
+                cardIndexDto.TotalPrice = cardIndex.TotalPrice;
+            }
+
             return cardIndexDto;
         }
 
@@ -265,9 +274,17 @@ namespace Library.BusinessLayer.Converters
                 ReturnDate = cardIndexDto.ReturnDate,
                 TotalPrice = cardIndexDto.TotalPrice,
                 BookCode = cardIndexDto.Book.Id,
-                FineCode = cardIndexDto.Fine.Id,
                 ReaderCode = cardIndexDto.Reader.Id
             };
+
+            if (cardIndexDto.Fine == null)
+            {
+                cardIndex.FineCode = null;
+            }
+            else
+            {
+                cardIndex.FineCode = cardIndexDto.Fine.Id;
+            }
 
             return cardIndex;
         }

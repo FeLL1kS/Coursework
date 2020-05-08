@@ -139,7 +139,7 @@
             </Button>
         </StackPanel>
 
-        <StackPanel HorizontalAlignment="Right" Margin="0,0" VerticalAlignment="Top" Width="100" Height="291" Grid.Row="1" Grid.Column="2">
+        <StackPanel HorizontalAlignment="Right" Margin="0,0" VerticalAlignment="Top" Width="100" Grid.Row="1" Grid.Column="2">
             <Button x:Name="btnAdd" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="73" Click="btnAdd_Click">
                 <Button.ToolTip>
                     <TextBlock><Run Text="Добавить запись в выбранную таблицу"/></TextBlock>
@@ -147,6 +147,24 @@
                 <StackPanel>
                     <Image Source="component\Images\Add.ico" Height="45" Width="70"/>
                     <TextBlock HorizontalAlignment="Center" Margin="1" FontSize="10"><Run Text="Добавить"/></TextBlock>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnIssueBook" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="73" Click="btnIssueBook_Click">
+                <Button.ToolTip>
+                    <TextBlock><Run Text="Выдать книгу"/></TextBlock>
+                </Button.ToolTip>
+                <StackPanel>
+                    <Image Source="component\Images\Add.ico" Height="45" Width="70"/>
+                    <TextBlock HorizontalAlignment="Center" Margin="1" FontSize="10"><Run Text="Выдача"/></TextBlock>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnReturnBook" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="73" Click="btnReturnBook_Click">
+                <Button.ToolTip>
+                    <TextBlock><Run Text="Оформить возврат"/></TextBlock>
+                </Button.ToolTip>
+                <StackPanel>
+                    <Image Source="component\Images\Add.ico" Height="45" Width="70"/>
+                    <TextBlock HorizontalAlignment="Center" Margin="1" FontSize="10"><Run Text="Возврат"/></TextBlock>
                 </StackPanel>
             </Button>
             <Button x:Name="btnDelete" HorizontalAlignment="Right" VerticalAlignment="Top" Width="100" Height="73" Click="btnDelete_Click">
@@ -163,7 +181,7 @@
                     <TextBlock><Run Text="Отредактировать запись в выбранной таблице"/></TextBlock>
                 </Button.ToolTip>
                 <StackPanel>
-                    <Image Source="component\Images\Add.ico" Height="45" Width="70"/>
+                    <Image Source="component\Images\Edit.ico" Height="45" Width="70"/>
                     <TextBlock HorizontalAlignment="Center" Margin="1" FontSize="10"><Run Text="Редактировать"/></TextBlock>
                 </StackPanel>
             </Button>

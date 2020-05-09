@@ -22,6 +22,7 @@ namespace Library
     {
         private bool recstatus;
         private bool applySettings = false;
+
         private void LoadSettings()
         {
             if (ProcessFactory.GetSettingsProcess().GetSettings() != null)

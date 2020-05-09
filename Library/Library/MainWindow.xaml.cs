@@ -362,26 +362,36 @@ namespace Library
 
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
-            switch (status)
+            try
             {
-                case ("Authors"):
-                    this.btnRefreshA_Click();
-                    break;
-                case ("Books"):
-                    this.btnRefreshB_Click();
-                    break;
-                case ("Discounts"):
-                    this.btnRefreshD_Click();
-                    break;
-                case ("Fines"):
-                    this.btnRefreshF_Click();
-                    break;
-                case ("Readers"):
-                    this.btnRefreshR_Click();
-                    break;
-                case ("CardIndecies"):
-                    this.btnRefreshC_Click();
-                    break;
+                switch (status)
+                {
+                    case ("Authors"):
+                        this.btnRefreshA_Click();
+                        break;
+                    case ("Books"):
+                        this.btnRefreshB_Click();
+                        break;
+                    case ("Discounts"):
+                        this.btnRefreshD_Click();
+                        break;
+                    case ("Fines"):
+                        this.btnRefreshF_Click();
+                        break;
+                    case ("Readers"):
+                        this.btnRefreshR_Click();
+                        break;
+                    case ("CardIndecies"):
+                        btnRefreshC_Click();
+                        break;
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Отсутствует подключение к БД!", "Ошибка");
+                SettingsWindow window = new SettingsWindow();
+                window.ShowDialog();
+                btnRefresh_Click(sender, e);
             }
 
             if (status == null)
@@ -638,6 +648,13 @@ namespace Library
         {   
             AddCardIndexWindow window = new AddCardIndexWindow { status = "issue" };
             window.ShowDialog();
+            btnRefresh_Click(sender, e);
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            dgCardIndecies.Visibility = Visibility.Visible;
+            status = "CardIndecies";
             btnRefresh_Click(sender, e);
         }
     }
